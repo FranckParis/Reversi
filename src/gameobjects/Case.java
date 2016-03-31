@@ -11,10 +11,11 @@ import java.awt.*;
  *
  * @author theo
  */
-public class Case {
+public class Case{
     private Piece piece;
 
     public Case(){
+        super();
         this.piece = null;
     }
 
@@ -28,6 +29,7 @@ public class Case {
     }
     
     public boolean isEmpty(){
-        return !(this.piece == null);
+        return (this.piece == null);
     }
+
 }
