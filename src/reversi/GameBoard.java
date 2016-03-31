@@ -11,13 +11,36 @@ package reversi;
  */
 public class GameBoard {
     private Case[][] board;
+    int width;
+    int height;
     
-    public GameBoard(){
-        this.board = new Case[8][8];
-        for(int i=0;i<8;i++){
-            for(int j=0;j<8;j++){
+    
+    public GameBoard(int width, int height){
+        this.width = width;
+        this.height = height;
+        this.board = new Case[width][height];
+        for(int i=0;i<width;i++){
+            for(int j=0;j<height;j++){
                 this.board[i][j] = new Case();
             }
         }
     }
+    
+    public GameBoard(){
+        this(8,8);
+    }
+
+    public Case[][] getBoard() {
+        return board;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+    
+    
 }
