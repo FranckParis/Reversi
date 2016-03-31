@@ -11,7 +11,7 @@ package graphics;
  */
 import java.awt.Color;
 import javax.swing.*;
-import reversi.GameBoard;
+import gameobjects.GameBoard;
 
 public class Window extends JFrame{
     private JMenuBar menuBar = new JMenuBar();

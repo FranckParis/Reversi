@@ -1,7 +1,7 @@
 package main;
 
 import graphics.Window;
-import reversi.GameBoard;
+import gameobjects.GameBoard;
 
 /**
  * Created by menros on 31/03/16.

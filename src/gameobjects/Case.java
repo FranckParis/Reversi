@@ -26,4 +26,8 @@ public class Case {
     public Piece getPiece(){
         return this.piece;
     }
+    
+    public boolean isEmpty(){
+        return !(this.piece == null);
+    }
 }
