@@ -7,11 +7,9 @@ package graphics;
 
 import gameobjects.Case;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import static java.lang.Math.min;
@@ -54,13 +52,13 @@ public class CaseView extends JButton implements MouseListener{
     //Méthode appelée lors du clic de souris
     @Override
   public void mouseClicked(MouseEvent event) { 
-      this.setBackGround(new GradientPaint(0, 0, Color.lightGray, 30, 30, Color.RED, true));
+      this.c.addPiece(Color.BLACK);
   }
 
   //Méthode appelée lors du survol de la souris
     @Override
   public void mouseEntered(MouseEvent event) {
-      this.setBackGround(new GradientPaint(0, 0, Color.lightGray, 30, 30, Color.MAGENTA, true));
+      
   }
 
   //Méthode appelée lorsque la souris sort de la zone du bouton

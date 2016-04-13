@@ -193,7 +193,7 @@ public class GameBoardLayoutManager implements LayoutManager2{
                 return cellWidth;
             }
 
-            public class Cell {
+            private class Cell {
 
                 private Point point;
                 private Component component;
