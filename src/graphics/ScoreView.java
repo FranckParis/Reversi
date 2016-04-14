@@ -16,14 +16,14 @@ import javax.swing.JButton;
  * @author theo
  */
 public class ScoreView extends JButton{
-    private String Bscore;
-    private String Wscore;
+    private String BScore;
+    private String WScore;
     
     public ScoreView(){
+        int width = this.getWidth();
         this.setPreferredSize(new Dimension(this.getWidth(),40));
-        this.Bscore = "black : 2";
-        this.Wscore = "white : 2";
-        this.setBackground(Color.WHITE);
+        this.BScore = "black : 2";
+        this.WScore = "white : 2";
         setContentAreaFilled(false);
         setBorderPainted(false);
     }
@@ -32,12 +32,14 @@ public class ScoreView extends JButton{
    public void paintComponent(Graphics g){
         Font fonte = new Font("TimesRoman ",Font.BOLD,30);
         g.setFont(fonte);
-        g.drawString(Wscore,10,30);
-        g.drawString(Bscore,this.getWidth()/2,30);
+        String s = BScore+"    |    "+WScore;
+        int stringLen = (int)g.getFontMetrics().getStringBounds(s, g).getWidth();
+        int start = this.getWidth()/2 - stringLen/2;
+        g.drawString(s,start,30);
    }
    
    public void refreshScore(int WScore, int BScore){
-       this.Bscore = "black : "+BScore;
-       this.Wscore = "white : "+WScore;
+       this.BScore = "black : "+BScore;
+       this.WScore = "white : "+WScore;
    }
 }

@@ -14,20 +14,27 @@ import javax.swing.*;
 import gameobjects.GameBoard;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Locale;
 
 public class Window extends JFrame{
     private JMenuBar menuBar = new JMenuBar();
-    private ScoreView score = new ScoreView();
+    private ScoreView score= new ScoreView();;
     private GameBoardView pan;
     
     public Window(GameBoard board){
+        java.util.Locale.setDefault ( java.util.Locale.ENGLISH ) ;
+        javax.swing.UIManager.getDefaults().setDefaultLocale ( java.util.Locale.ENGLISH ) ;
+        javax.swing.JComponent.setDefaultLocale ( java.util.Locale.ENGLISH ) ;
+        
+        
         this.setTitle("Reversi");
         this.setSize(400, 450);
         this.setMinimumSize(new Dimension(400,450));
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);             
         this.setVisible(true);
-        
         this.setLayout(new BorderLayout());
 
         this.pan = new GameBoardView(board);
@@ -41,6 +48,7 @@ public class Window extends JFrame{
         //menu
         JMenu menu = new JMenu("Game");
         JMenuItem item1 = new JMenuItem("new game");
+        item1.addActionListener(new MenuListener());
         menu.add(item1);
         
         this.menuBar.add(menu);
@@ -51,4 +59,21 @@ public class Window extends JFrame{
     public void refreshScore(int WScore, int BScore){
         this.score.refreshScore(WScore, BScore);
     }
+    
+    public class MenuListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent arg0) {    	
+          JOptionPane jop = new JOptionPane();
+            int option = JOptionPane.showConfirmDialog(null, 
+            "Restart the game ?", 
+            "restart", 
+            JOptionPane.YES_NO_OPTION, 
+            JOptionPane.QUESTION_MESSAGE);
+          
+
+          if(option == JOptionPane.OK_OPTION){
+            System.out.println("ok");
+          }
+        }
+  }
 }
