@@ -13,40 +13,42 @@ import java.awt.Color;
 import javax.swing.*;
 import gameobjects.GameBoard;
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Dimension;
 
 public class Window extends JFrame{
     private JMenuBar menuBar = new JMenuBar();
-    private JMenu test1 = new JMenu("Game");
-    private JMenuItem item1 = new JMenuItem("new game");
+    private ScoreView score = new ScoreView();
+    private GameBoardView pan;
     
     public Window(GameBoard board){
         this.setTitle("Reversi");
         this.setSize(400, 450);
+        this.setMinimumSize(new Dimension(400,450));
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);             
         this.setVisible(true);
         
         this.setLayout(new BorderLayout());
-        //Instanciation d'un objet JPanel
-        GameBoardView pan = new GameBoardView(board);
-        //Définition de sa couleur de fond
-        this.setBackground(Color.LIGHT_GRAY);
-        //On prévient notre JFrame que notre JPanel sera son content pane
-        this.setContentPane(pan);
-        
-        
-        
-        
-        //On initialise nos menus      
-        this.test1.add(item1);
 
-        //L'ordre d'ajout va déterminer l'ordre d'apparition dans le menu de gauche à droite
-        //Le premier ajouté sera tout à gauche de la barre de menu et inversement pour le dernier
-        this.menuBar.add(test1);
+        this.pan = new GameBoardView(board);
+        //Background
+        this.setBackground(Color.LIGHT_GRAY);
+
+        this.setLayout(new BorderLayout());
+        this.getContentPane().add(pan, BorderLayout.CENTER);
+        this.getContentPane().add(score, BorderLayout.NORTH);
+        
+        //menu
+        JMenu menu = new JMenu("Game");
+        JMenuItem item1 = new JMenuItem("new game");
+        menu.add(item1);
+        
+        this.menuBar.add(menu);
         this.setJMenuBar(menuBar);
         this.setVisible(true);
-      }
+    }
     
+    public void refreshScore(int WScore, int BScore){
+        this.score.refreshScore(WScore, BScore);
+    }
 }

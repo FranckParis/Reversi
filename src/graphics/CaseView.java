@@ -46,7 +46,6 @@ public class CaseView extends JButton implements MouseListener{
             g2d.setPaint(c.getPiece().getPieceColor());
             g.fillOval(size*1/20, size*1/20, size*9/10, size*9/10);
        }
-       
     }
 
     //Méthode appelée lors du clic de souris
