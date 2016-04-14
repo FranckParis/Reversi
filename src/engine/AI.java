@@ -5,6 +5,8 @@
  */
 package engine;
 
+import gameobjects.Case;
+
 import java.awt.Color;
 
 /**
@@ -16,5 +18,8 @@ public class AI extends Player {
     public AI() {
         super(2, Color.WHITE);
     }
-    
+
+    public void play(Case c){
+
+    }
 }

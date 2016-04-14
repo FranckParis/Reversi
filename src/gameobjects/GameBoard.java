@@ -15,13 +15,14 @@ public class GameBoard {
     private Case[][] board;
     int width;
     int height;
+
     public GameBoard(int width, int height){
         this.width = width;
         this.height = height;
         this.board = new Case[width][height];
         for(int i=0;i<width;i++){
             for(int j=0;j<height;j++){
-                this.board[i][j] = new Case();
+                this.board[i][j] = new Case(i, j);
             }
         }
         this.setPieceOnPos(3, 3, Color.white);
@@ -34,12 +35,8 @@ public class GameBoard {
         this(8,8);
     }
 
-    public Case getCaseOnPos(int x, int y){
-        return this.board[x][y];
-    }
-
     public Piece getPieceOnPos(int x, int y){
-        return this.getCaseOnPos(x, y).getPiece();
+        return this.getCase(x, y).getPiece();
     }
 
     public Color getPieceColorOnPos(int x, int y) {
@@ -47,11 +44,11 @@ public class GameBoard {
     }
 
     public void setPieceOnPos(int x, int y, Color color){
-        this.getCaseOnPos(x, y).addPiece(color);
+        this.getCase(x, y).addPiece(color);
     }
 
     public void addPieceOnPos(int x, int y, Color color){
-        this.getCaseOnPos(x, y).addPiece(color);
+        this.getCase(x, y).addPiece(color);
         this.capturePieceByPos(x, y);
     }
 

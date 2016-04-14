@@ -5,27 +5,33 @@
  */
 package engine;
 
+import gameobjects.Case;
+
 import java.awt.Color;
 
 /**
  *
  * @author Francky
  */
-public class Player {
-    
+public abstract class Player {
+
     private int playerNum;
     protected Color playerColor;
-    
-    public Player (int num, Color c){
+
+    public Player(int num, Color c) {
         this.playerNum = num;
         this.playerColor = c;
     }
-    
-    public int getPlayerNum(){
+
+    public int getPlayerNum() {
         return this.playerNum;
     }
-    
-    public Color getPlayerColor(){
+
+    public Color getPlayerColor() {
         return this.playerColor;
+    }
+
+    public void play(Case c){
+
     }
 }

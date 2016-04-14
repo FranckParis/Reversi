@@ -12,11 +12,13 @@ import java.awt.*;
  * @author theo
  */
 public class Case{
+    private int cordX, cordY;
     private Piece piece;
 
-    public Case(){
-        super();
+    public Case(int x, int y){
         this.piece = null;
+        this.cordX = x;
+        this.cordY = y;
     }
 
     public void addPiece(Color color){
@@ -27,7 +29,15 @@ public class Case{
     public Piece getPiece(){
         return this.piece;
     }
-    
+
+    public int getCordX(){
+        return this.cordX;
+    }
+
+    public int getCordY() {
+        return cordY;
+    }
+
     public boolean isEmpty(){
         return (this.piece == null);
     }
