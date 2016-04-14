@@ -26,10 +26,6 @@ public class GameBoard {
                 this.board[i][j] = new Case(i, j);
             }
         }
-        this.addPieceOnPos(3, 3, Color.white);
-        this.addPieceOnPos(3, 4, Color.black);
-        this.addPieceOnPos(4, 3, Color.black);
-        this.addPieceOnPos(4, 4, Color.white);
     }
     
     public GameBoard(){

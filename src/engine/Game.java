@@ -37,6 +37,10 @@ public class Game {
     public void run(){
         int index = 0;
         Player player;
+        board.addPieceOnPos(3, 3, players.get(0).getPlayerColor());
+        board.addPieceOnPos(3, 4, players.get(1).getPlayerColor());
+        board.addPieceOnPos(4, 3, players.get(1).getPlayerColor());
+        board.addPieceOnPos(4, 4, players.get(0).getPlayerColor());
         while(true){
             board.refreshScore(players.get(0).getPlayerColor(),players.get(1).getPlayerColor());
             window.revalidate();
