@@ -5,6 +5,7 @@
  */
 package graphics;
 
+import engine.Human;
 import gameobjects.Case;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -51,7 +52,8 @@ public class CaseView extends JButton implements MouseListener{
     //Méthode appelée lors du clic de souris
     @Override
   public void mouseClicked(MouseEvent event) { 
-      this.c.addPiece(Color.BLACK);
+      Human.setClickedPos(c.getPos());
+      super.repaint();
   }
 
   //Méthode appelée lors du survol de la souris

@@ -5,7 +5,8 @@
  */
 package engine;
 
-import gameobjects.Case;
+import gameobjects.GameBoard;
+import gameobjects.Position;
 
 import java.awt.Color;
 
@@ -14,12 +15,30 @@ import java.awt.Color;
  * @author Francky
  */
 public class Human extends Player {
+    
+    private static Position clickedPos = new Position(-1,-1);
 
     public Human() {
-        super(1, Color.BLACK);
+        this(Color.BLACK);
+    }
+    
+    public Human(Color color){
+        super(1, color);
     }
 
-    public void play(Case c){
+    @Override
+    public Position play(Turn turn,GameBoard board){
+        this.clickedPos.reset();
+        while (clickedPos.getPosX()<0 || clickedPos.getPosY()<0) {
+              try {
+                   Thread.sleep(1);
+              } catch (InterruptedException exception) {
+              }
+         }
+        return clickedPos;
+    }
 
+    public static void setClickedPos(Position ClickedPos) {
+        Human.clickedPos = ClickedPos;
     }
 }

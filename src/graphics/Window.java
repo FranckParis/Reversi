@@ -9,14 +9,15 @@ package graphics;
  *
  * @author theo
  */
+
 import java.awt.Color;
 import javax.swing.*;
 import gameobjects.GameBoard;
+import gameobjects.Position;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Locale;
 
 public class Window extends JFrame{
     private JMenuBar menuBar = new JMenuBar();
@@ -30,8 +31,8 @@ public class Window extends JFrame{
         
         
         this.setTitle("Reversi");
-        this.setSize(400, 450);
-        this.setMinimumSize(new Dimension(400,450));
+        this.setSize(500, 450);
+        this.setMinimumSize(new Dimension(500,450));
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);             
         this.setVisible(true);
@@ -56,10 +57,6 @@ public class Window extends JFrame{
         this.setVisible(true);
     }
     
-    public void refreshScore(int WScore, int BScore){
-        this.score.refreshScore(WScore, BScore);
-    }
-    
     public class MenuListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent arg0) {    	
@@ -75,5 +72,5 @@ public class Window extends JFrame{
             System.out.println("ok");
           }
         }
-  }
+    }
 }

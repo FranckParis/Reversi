@@ -12,18 +12,22 @@ import java.awt.*;
  * @author theo
  */
 public class Case{
-    private int cordX, cordY;
+    private Position pos;
     private Piece piece;
 
     public Case(int x, int y){
         this.piece = null;
-        this.cordX = x;
-        this.cordY = y;
+        this.pos = new Position(x,y);
+    }
+    
+    public Case(){
+        this(-1,-1);
     }
 
     public void addPiece(Color color){
-        if(this.piece == null)
+        if(this.piece == null){
             this.piece = new Piece(color);
+        }
     }
 
     public Piece getPiece(){
@@ -31,15 +35,19 @@ public class Case{
     }
 
     public int getCordX(){
-        return this.cordX;
+        return this.pos.getPosX();
     }
 
     public int getCordY() {
-        return cordY;
+        return this.pos.getPosY();
     }
 
     public boolean isEmpty(){
         return (this.piece == null);
+    }
+
+    public Position getPos() {
+        return pos;
     }
 
 }

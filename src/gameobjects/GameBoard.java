@@ -5,6 +5,7 @@
  */
 package gameobjects;
 
+import graphics.ScoreView;
 import java.awt.*;
 
 /**
@@ -25,35 +26,36 @@ public class GameBoard {
                 this.board[i][j] = new Case(i, j);
             }
         }
-        this.setPieceOnPos(3, 3, Color.white);
-        this.setPieceOnPos(3, 4, Color.black);
-        this.setPieceOnPos(4, 3, Color.black);
-        this.setPieceOnPos(4, 4, Color.white);
+        this.addPieceOnPos(3, 3, Color.white);
+        this.addPieceOnPos(3, 4, Color.black);
+        this.addPieceOnPos(4, 3, Color.black);
+        this.addPieceOnPos(4, 4, Color.white);
     }
     
     public GameBoard(){
         this(8,8);
     }
 
-    public Piece getPieceOnPos(int x, int y){
-        return this.getCase(x, y).getPiece();
+    public Piece getPieceOnPos(Position pos){
+        return this.getCase(pos).getPiece();
     }
 
-    public Color getPieceColorOnPos(int x, int y) {
-        return this.getPieceOnPos(x, y).getPieceColor();
+    public Color getPieceColorOnPos(Position pos) {
+        return this.getPieceOnPos(pos).getPieceColor();
     }
 
-    public void setPieceOnPos(int x, int y, Color color){
-        this.getCase(x, y).addPiece(color);
+    public void addPieceOnPos(Position pos, Color color){
+        Case c = this.getCase(pos);
+        c.addPiece(color);
+        //this.capturePieceByPos(x, y);
     }
-
+    
     public void addPieceOnPos(int x, int y, Color color){
-        this.getCase(x, y).addPiece(color);
-        this.capturePieceByPos(x, y);
+        addPieceOnPos(new Position(x,y),color);
     }
 
     private void capturePieceByPos(int x, int y){
-        Piece p = getPieceOnPos(x, y);
+        Piece p = getPieceOnPos(new Position(x,y));
         int xt = x, yt = y;
     }
     
@@ -61,8 +63,12 @@ public class GameBoard {
         return board;
     }
     
-    public Case getCase(int i, int j) {
-        return board[i][j];
+    public Case getCase(int x, int y) {
+        return board[x][y];
+    }
+    
+    public Case getCase(Position pos) {
+        return board[pos.getPosX()][pos.getPosY()];
     }
 
     public int getWidth() {
@@ -71,6 +77,25 @@ public class GameBoard {
 
     public int getHeight() {
         return height;
+    }
+    
+    public void refreshScore(Color color1,Color color2) {
+        Piece p;
+        int BScore=0,WScore=0;
+        for(int i=0;i<width;i++){
+            for(int j=0;j<height;j++){
+                p = this.getCase(i, j).getPiece();
+                if(p!=null){
+                    if(p.getPieceColor()==color1){
+                        BScore++;
+                    }
+                    else if(p.getPieceColor()==color2){
+                        WScore++;
+                    }
+                }
+            }
+        }
+        Score.refreshScore(BScore, WScore);
     }
 
 }

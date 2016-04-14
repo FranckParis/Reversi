@@ -6,6 +6,7 @@
 package engine;
 
 import gameobjects.*;
+import java.awt.Color;
 
 import java.util.ArrayList;
 
@@ -16,14 +17,18 @@ import java.util.ArrayList;
 public class Turn {
     
     private Player player;
-    private ArrayList <Case> playablePos;
     private Case playedCase;
     
-    public Turn (Player p, GameBoard gb){
+    public Turn (Player p){
         this.player = p;
         this.playedCase = null;
-        this.playablePos = new ArrayList<>();
-        this.getAllPlayablePos(gb);
+        this.playedCase = null;
+    }
+    
+    public void run(GameBoard board){
+        Position pos = player.play(this,board);
+        board.addPieceOnPos(pos, player.getPlayerColor());
+        this.playedCase = board.getCase(pos);
     }
 
     public void getAllPlayablePos(GameBoard gb){
@@ -32,9 +37,5 @@ public class Turn {
                 
             }
         }
-    }
-
-    public ArrayList <Case> getPlayablePos(){
-        return this.playablePos;
     }
 }

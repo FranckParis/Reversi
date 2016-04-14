@@ -5,7 +5,8 @@
  */
 package engine;
 
-import gameobjects.Case;
+import gameobjects.GameBoard;
+import gameobjects.Position;
 
 import java.awt.Color;
 
@@ -19,7 +20,8 @@ public class AI extends Player {
         super(2, Color.WHITE);
     }
 
-    public void play(Case c){
-
+    @Override
+    public Position play(Turn turn, GameBoard board){
+        return new Position(0,0);
     }
 }
