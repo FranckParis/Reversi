@@ -33,6 +33,10 @@ public class Position {
     public void setPosY(int posY) {
         this.posY = posY;
     }
+
+    public boolean isOnBoard(GameBoard board){
+        return (this.posX >= 0 && this.posX < board.getWidth() && this.posY >= 0 && this.posY < board.getHeight());
+    }
     
     public void reset(){
         this.setPosX(-1);

@@ -22,12 +22,17 @@ public class Turn {
     public Turn (Player p){
         this.player = p;
         this.playedCase = null;
-        this.playedCase = null;
     }
     
     public void run(GameBoard board){
-        Position pos = player.play(this,board);
+        Position pos;
+        ArrayList <Piece> tabPieces;
+        do{
+            pos = player.play(this,board);
+            tabPieces = board.canAddPieceOnPos(pos, player.getPlayerColor());
+        }while(tabPieces.isEmpty());
         board.addPieceOnPos(pos, player.getPlayerColor());
+        board.capturePieces(tabPieces);
         this.playedCase = board.getCase(pos);
     }
 

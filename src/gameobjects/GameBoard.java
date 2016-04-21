@@ -7,6 +7,7 @@ package gameobjects;
 
 import graphics.ScoreView;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -40,19 +41,136 @@ public class GameBoard {
         return this.getPieceOnPos(pos).getPieceColor();
     }
 
+    /*
+    sens :  1- top left diagonal
+            2- left
+            3- bottom left diagonal
+            4- top
+            5- bottom
+            6- top right diagonal
+            7- right
+            8- bottom right diagonal
+     */
+    public boolean addCapture(Position pos, Color color, int sens, ArrayList <Piece> tabP){
+        if(pos.isOnBoard(this) && this.getPieceOnPos(pos) != null){
+            if(this.getPieceOnPos(pos).getPieceColor() == color) return true;
+            else{
+                switch(sens){
+                    case 1:
+                        if(addCapture(new Position(pos.getPosX()-1, pos.getPosY()-1), color, sens, tabP)){
+                            tabP.add(this.getPieceOnPos(pos));
+                            return true;
+                        }
+                        break;
+                    case 2:
+                        if(addCapture(new Position(pos.getPosX(), pos.getPosY()-1), color, sens, tabP)){
+                            tabP.add(this.getPieceOnPos(pos));
+                            return true;
+                        }
+                        break;
+                    case 3:
+                        if(addCapture(new Position(pos.getPosX()+1, pos.getPosY()-1), color, sens, tabP)){
+                            tabP.add(this.getPieceOnPos(pos));
+                            return true;
+                        }
+                        break;
+                    case 4:
+                        if(addCapture(new Position(pos.getPosX()-1, pos.getPosY()), color, sens, tabP)){
+                            tabP.add(this.getPieceOnPos(pos));
+                            return true;
+                        }
+                        break;
+                    case 5:
+                        if(addCapture(new Position(pos.getPosX()+1, pos.getPosY()), color, sens, tabP)){
+                            tabP.add(this.getPieceOnPos(pos));
+                            return true;
+                        }
+                        break;
+                    case 6:
+                        if(addCapture(new Position(pos.getPosX()-1, pos.getPosY()+1), color, sens, tabP)){
+                            tabP.add(this.getPieceOnPos(pos));
+                            return true;
+                        }
+                        break;
+                    case 7:
+                        if(addCapture(new Position(pos.getPosX(), pos.getPosY()+1), color, sens, tabP)){
+                            tabP.add(this.getPieceOnPos(pos));
+                            return true;
+                        }
+                        break;
+                    case 8:
+                        if(addCapture(new Position(pos.getPosX()+1, pos.getPosY()+1), color, sens, tabP)){
+                            tabP.add(this.getPieceOnPos(pos));
+                            return true;
+                        }
+                        break;
+                }
+            }
+        }
+        return false;
+    }
+
+    public ArrayList canAddPieceOnPos(Position pos, Color color){
+        Position p;
+        ArrayList <Piece> tabP = new ArrayList <>();
+
+        if(this.getPieceOnPos(pos) == null){
+            p = new Position(pos.getPosX()-1, pos.getPosY()-1);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
+                this.addCapture(p, color, 1, tabP);
+            }
+
+            p = new Position(pos.getPosX(), pos.getPosY()-1);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
+                this.addCapture(p, color, 2, tabP);
+            }
+
+            p = new Position(pos.getPosX()+1, pos.getPosY()-1);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
+                this.addCapture(p, color, 3, tabP);
+            }
+
+            p = new Position(pos.getPosX()-1, pos.getPosY());
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
+                this.addCapture(p, color, 4, tabP);
+            }
+
+            p = new Position(pos.getPosX()+1, pos.getPosY());
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
+                this.addCapture(p, color, 5, tabP);
+            }
+
+            p = new Position(pos.getPosX()-1, pos.getPosY()+1);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
+                this.addCapture(p, color, 6, tabP);
+            }
+
+            p = new Position(pos.getPosX(), pos.getPosY()+1);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
+                this.addCapture(p, color, 7, tabP);
+            }
+
+            p = new Position(pos.getPosX()+1, pos.getPosY()+1);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
+                this.addCapture(p, color, 8, tabP);
+            }
+        }
+        return tabP;
+    }
+
     public void addPieceOnPos(Position pos, Color color){
         Case c = this.getCase(pos);
         c.addPiece(color);
-        //this.capturePieceByPos(x, y);
     }
     
     public void addPieceOnPos(int x, int y, Color color){
         addPieceOnPos(new Position(x,y),color);
     }
 
-    private void capturePieceByPos(int x, int y){
-        Piece p = getPieceOnPos(new Position(x,y));
-        int xt = x, yt = y;
+    public void capturePieces(ArrayList <Piece> tabP){
+        for (int i = 0 ; i < tabP.size() ; i++){
+            tabP.get(i).switchColor();
+        }
     }
     
     public Case[][] getBoard() {

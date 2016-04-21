@@ -20,8 +20,8 @@ public abstract class Player {
     protected Color playerColor;
 
     public Player(int num, Color c) {
-        this.playerNum = num;
-        this.playerColor = c;
+            this.playerNum = num;
+            this.playerColor = c;
     }
 
     public int getPlayerNum() {

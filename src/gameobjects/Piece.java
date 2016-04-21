@@ -28,6 +28,6 @@ public class Piece {
         if(this.color == Color.black)
             this.setPieceColor(Color.white);
         else
-            this.setPieceColor(Color.white);
+            this.setPieceColor(Color.black);
     }
 }
