@@ -8,6 +8,8 @@ package gameobjects;
 import graphics.ScoreView;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -156,6 +158,20 @@ public class GameBoard {
             }
         }
         return tabP;
+    }
+
+    public Map listOfPlayaplePos(Color color){
+        ArrayList <Piece> tabP;
+        Map<Case, ArrayList<Piece>> tabC = new HashMap<>();
+        for(int i = 0 ; i < this.height ; i++){
+            for(int j = 0 ; j< this.width ; j++){
+                tabP = this.canAddPieceOnPos(new Position(i, j), color);
+                if(!tabP.isEmpty()){
+                    tabC.put(this.getCase(i, j), tabP);
+                }
+            }
+        }
+        return tabC;
     }
 
     public void addPieceOnPos(Position pos, Color color){
