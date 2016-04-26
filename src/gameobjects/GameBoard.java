@@ -5,11 +5,8 @@
  */
 package gameobjects;
 
-import graphics.ScoreView;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -17,8 +14,8 @@ import java.util.Map;
  */
 public class GameBoard {
     private Case[][] board;
-    int width;
-    int height;
+    private int width;
+    private int height;
 
     public GameBoard(int width, int height){
         this.width = width;

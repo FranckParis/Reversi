@@ -5,7 +5,6 @@
  */
 package engine;
 
-import gameobjects.Case;
 import gameobjects.GameBoard;
 import graphics.Window;
 import java.awt.Color;
