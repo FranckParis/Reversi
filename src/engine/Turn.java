@@ -18,29 +18,42 @@ public class Turn {
     
     private Player player;
     private Case playedCase;
+    private ArrayList <PlayableCase> tabPlayableCases;
     
-    public Turn (Player p){
+    public Turn (Player p, GameBoard board){
         this.player = p;
         this.playedCase = null;
+        this.tabPlayableCases = board.listOfPlayablePos(this.player.getPlayerColor());
     }
     
     public void run(GameBoard board){
         int i;
         boolean canPlay = false;
         Position pos;
-        ArrayList <PlayableCase> tabPlayableCases = board.listOfPlayablePos(this.player.getPlayerColor());
         do{
             i = 0;
-            pos = player.play(this,board);
-            while(i < tabPlayableCases.size() && !canPlay){
-                if(tabPlayableCases.get(i).getpCase().getPos() == pos){
+            pos = this.player.play(this,board);
+            while(i < this.tabPlayableCases.size() && !canPlay){
+                if(this.tabPlayableCases.get(i).getpCase().getPos() == pos){
                     canPlay = true;
                 }
                 else i++;
             }
         }while(!canPlay);
-        board.addPieceOnPos(pos, player.getPlayerColor());
-        board.capturePieces(tabPlayableCases.get(i).getTabPieces());
+        board.addPieceOnPos(pos, this.player.getPlayerColor());
+        board.capturePieces(this.tabPlayableCases.get(i).getTabPieces());
         this.playedCase = board.getCase(pos);
+    }
+
+    public Player getPlayer(){
+        return this.player;
+    }
+
+    public Case getPlayedCase(){
+        return this.playedCase;
+    }
+
+    public ArrayList <PlayableCase> getTabPlayableCases(){
+        return this.tabPlayableCases;
     }
 }

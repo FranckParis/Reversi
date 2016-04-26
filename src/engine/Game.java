@@ -48,7 +48,7 @@ public class Game {
             window.revalidate();
             window.repaint();
             player = players.get(turnIndex);
-            Turn turn = new Turn(player);
+            Turn turn = new Turn(player, this.board);
             turn.run(board);
             turns.add(turn);
             turnIndex = turnIndex==0 ? turnIndex+1 : turnIndex-1;
