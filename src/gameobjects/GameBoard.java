@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class GameBoard {
     private Case[][] board;
-    int width;
-    int height;
+    private int width;
+    private int height;
 
     public GameBoard(int width, int height){
         this.width = width;
