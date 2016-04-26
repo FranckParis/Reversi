@@ -10,10 +10,10 @@ package graphics;
  * @author theo
  */
 
+import engine.Game;
 import java.awt.Color;
 import javax.swing.*;
 import gameobjects.GameBoard;
-import gameobjects.Position;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -21,10 +21,10 @@ import java.awt.event.ActionListener;
 
 public class Window extends JFrame{
     private JMenuBar menuBar = new JMenuBar();
-    private ScoreView score= new ScoreView();;
+    private ScoreView score;
     private GameBoardView pan;
     
-    public Window(GameBoard board){
+    public Window(Game game){
         java.util.Locale.setDefault ( java.util.Locale.ENGLISH ) ;
         javax.swing.UIManager.getDefaults().setDefaultLocale ( java.util.Locale.ENGLISH ) ;
         javax.swing.JComponent.setDefaultLocale ( java.util.Locale.ENGLISH ) ;
@@ -38,7 +38,8 @@ public class Window extends JFrame{
         this.setVisible(true);
         this.setLayout(new BorderLayout());
 
-        this.pan = new GameBoardView(board);
+        this.pan = new GameBoardView(game.getBoard());
+        this.score= new ScoreView(game);
         //Background
         this.setBackground(Color.LIGHT_GRAY);
 
