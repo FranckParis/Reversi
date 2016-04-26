@@ -38,7 +38,7 @@ public class Window extends JFrame{
         this.setVisible(true);
         this.setLayout(new BorderLayout());
 
-        this.pan = new GameBoardView(game.getBoard());
+        this.pan = new GameBoardView(game);
         this.score= new ScoreView(game);
         //Background
         this.setBackground(Color.LIGHT_GRAY);

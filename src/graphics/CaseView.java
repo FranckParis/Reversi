@@ -5,8 +5,10 @@
  */
 package graphics;
 
+import engine.Game;
 import engine.Human;
 import gameobjects.Case;
+import gameobjects.PlayableCase;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -14,6 +16,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import static java.lang.Math.min;
+import java.util.ArrayList;
 import javax.swing.JButton;
 
 /**
@@ -24,9 +27,11 @@ public class CaseView extends JButton implements MouseListener{
 
     private Case c;
     private GradientPaint backGround;
+    private Game game;
     
-    public CaseView(Case c){
+    public CaseView(Case c, Game game){
         this.c=c;
+        this.game = game;
         this.backGround = new GradientPaint(0, 0, Color.lightGray, 30, 30, new Color(150,150,150), true);
         setBackground(Color.WHITE);
         setContentAreaFilled(false);
@@ -46,7 +51,20 @@ public class CaseView extends JButton implements MouseListener{
         if(!c.isEmpty()){
             g2d.setPaint(c.getPiece().getPieceColor());
             g.fillOval(size*1/20, size*1/20, size*9/10, size*9/10);
-       }
+        }
+        int i = 0;
+        boolean playable = false;
+        ArrayList<PlayableCase> tabPlayableCases = game.getBoard().listOfPlayablePos(game.getPlayer().getPlayerColor());
+        while(i < tabPlayableCases.size() && !playable){
+            if(tabPlayableCases.get(i).getpCase().getPos() == c.getPos()){
+                playable = true;
+            }
+            else i++;
+        }
+        if(playable){
+            g2d.setPaint(Color.red);
+            g.fillOval(size*1/20, size*1/20, size*9/10, size*9/10);
+        }
     }
 
     //Méthode appelée lors du clic de souris

@@ -21,10 +21,10 @@ public class Game {
     private ArrayList <Player> players;
     private GameBoard board;
     private Window window;
-    private int turnIndex;
+    private int playerIndex;
     
     public Game (){
-        this.turnIndex=0;
+        this.playerIndex=0;
         Player player1 = new Human(Color.WHITE);
         Player player2 = new Human(Color.BLACK);
         GameBoard board = new GameBoard();
@@ -47,11 +47,11 @@ public class Game {
             board.refreshScore(players.get(0).getPlayerColor(),players.get(1).getPlayerColor());
             window.revalidate();
             window.repaint();
-            player = players.get(turnIndex);
+            player = players.get(playerIndex);
             Turn turn = new Turn(player, this.board);
             turn.run(board);
             turns.add(turn);
-            turnIndex = turnIndex==0 ? turnIndex+1 : turnIndex-1;
+            playerIndex = playerIndex==0 ? playerIndex+1 : playerIndex-1;
         }
     }
     
@@ -71,15 +71,17 @@ public class Game {
         this.players.add(p);
     }
 
-    public int getTurn() {
-        return turnIndex;
+    public int getPlayerIndex() {
+        return playerIndex;
     }
 
     public GameBoard getBoard() {
         return board;
     }
     
-    
+    public Player getPlayer(){
+        return this.players.get(playerIndex);
+    }
     
     
 }

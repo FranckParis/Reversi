@@ -6,6 +6,7 @@
 package graphics;
 
 
+import engine.Game;
 import javax.swing.JPanel;
 import gameobjects.GameBoard;
 import java.awt.Point;
@@ -17,14 +18,14 @@ import java.awt.Point;
 public class GameBoardView extends JPanel {
     private GameBoard board;
     
-    public GameBoardView(GameBoard board){
-        this.board = board;
+    public GameBoardView(Game game){
+        this.board = game.getBoard();
         this.setLayout(new GameBoardLayoutManager());
         int width = board.getWidth();
         int height = board.getHeight();
         for (int i = 0; i < board.getHeight(); i++) {
             for (int j = 0; j < board.getWidth(); j++) {
-                this.add(new CaseView(board.getCase(i, j)), new Point(j, i));
+                this.add(new CaseView(board.getCase(i, j),game), new Point(j, i));
             }
         }
         

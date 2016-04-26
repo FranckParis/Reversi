@@ -40,7 +40,7 @@ public class ScoreView extends JButton{
         int sLen2 = (int)g.getFontMetrics().getStringBounds(s2, g).getWidth();
         int sLen3 = (int)g.getFontMetrics().getStringBounds(s3, g).getWidth();
         int start = this.getWidth()/2 - (sLen1+sLen2+sLen3)/2;
-        if(game.getTurn() == 0){
+        if(game.getPlayerIndex() == 0){
             g.setFont(fonteB);
             g.drawString(s1,start,30);
             g.setFont(fonteP);
