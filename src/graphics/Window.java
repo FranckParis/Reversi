@@ -23,8 +23,10 @@ public class Window extends JFrame{
     private JMenuBar menuBar = new JMenuBar();
     private ScoreView score;
     private GameBoardView pan;
+    private Game game;
     
-    public Window(Game game){
+    public Window(Game g){
+        this.game = g;
         java.util.Locale.setDefault ( java.util.Locale.ENGLISH ) ;
         javax.swing.UIManager.getDefaults().setDefaultLocale ( java.util.Locale.ENGLISH ) ;
         javax.swing.JComponent.setDefaultLocale ( java.util.Locale.ENGLISH ) ;
@@ -49,7 +51,7 @@ public class Window extends JFrame{
         
         //menu
         JMenu menu = new JMenu("Game");
-        JMenuItem item1 = new JMenuItem("new game");
+        JMenuItem item1 = new JMenuItem("reset game");
         item1.addActionListener(new MenuListener());
         menu.add(item1);
         
@@ -57,6 +59,8 @@ public class Window extends JFrame{
         this.setJMenuBar(menuBar);
         this.setVisible(true);
     }
+    
+    
     
     public class MenuListener implements ActionListener{
         @Override
@@ -70,7 +74,7 @@ public class Window extends JFrame{
           
 
           if(option == JOptionPane.OK_OPTION){
-            System.out.println("ok");
+            game.reset();
           }
         }
     }
