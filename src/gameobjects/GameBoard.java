@@ -160,18 +160,19 @@ public class GameBoard {
         return tabP;
     }
 
-    public Map listOfPlayaplePos(Color color){
+    public ArrayList listOfPlayablePos(Color color){
+        ArrayList <PlayableCase> tabPc = new ArrayList<>();
         ArrayList <Piece> tabP;
-        Map<Case, ArrayList<Piece>> tabC = new HashMap<>();
+
         for(int i = 0 ; i < this.height ; i++){
             for(int j = 0 ; j< this.width ; j++){
                 tabP = this.canAddPieceOnPos(new Position(i, j), color);
                 if(!tabP.isEmpty()){
-                    tabC.put(this.getCase(i, j), tabP);
+                    tabPc.add(new PlayableCase(getCase(i, j), tabP));
                 }
             }
         }
-        return tabC;
+        return tabPc;
     }
 
     public void addPieceOnPos(Position pos, Color color){

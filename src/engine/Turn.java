@@ -25,22 +25,22 @@ public class Turn {
     }
     
     public void run(GameBoard board){
+        int i;
+        boolean canPlay = false;
         Position pos;
-        ArrayList <Piece> tabPieces;
+        ArrayList <PlayableCase> tabPlayableCases = board.listOfPlayablePos(this.player.getPlayerColor());
         do{
+            i = 0;
             pos = player.play(this,board);
-            tabPieces = board.canAddPieceOnPos(pos, player.getPlayerColor());
-        }while(tabPieces.isEmpty());
-        board.addPieceOnPos(pos, player.getPlayerColor());
-        board.capturePieces(tabPieces);
-        this.playedCase = board.getCase(pos);
-    }
-
-    public void getAllPlayablePos(GameBoard gb){
-        for(int i = 0 ; i < gb.getHeight() ; i++){
-            for(int j = 0 ; j < gb.getWidth() ; j++){
-                
+            while(i < tabPlayableCases.size() && !canPlay){
+                if(tabPlayableCases.get(i).getpCase().getPos() == pos){
+                    canPlay = true;
+                }
+                else i++;
             }
-        }
+        }while(!canPlay);
+        board.addPieceOnPos(pos, player.getPlayerColor());
+        board.capturePieces(tabPlayableCases.get(i).getTabPieces());
+        this.playedCase = board.getCase(pos);
     }
 }
