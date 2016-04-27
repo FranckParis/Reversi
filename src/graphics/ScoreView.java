@@ -32,9 +32,9 @@ public class ScoreView extends JButton{
    public void paintComponent(Graphics g){
         Font fonteB = new Font("TimesRoman ",Font.BOLD,30);
         Font fonteP = new Font("TimesRoman ",Font.PLAIN,30);
-        String s1 = "joueur1 : "+Score.getScore1();
+        String s1 = "player 1 : "+Score.getScore1();
         String s2 = "   |   ";
-        String s3 = "joueur2 : "+Score.getScore2();
+        String s3 = "player 2 : "+Score.getScore2();
         g.setFont(fonteB);
         int sLen1 = (int)g.getFontMetrics().getStringBounds(s1, g).getWidth();
         int sLen2 = (int)g.getFontMetrics().getStringBounds(s2, g).getWidth();
