@@ -209,23 +209,23 @@ public class GameBoard {
         return height;
     }
     
-    public void refreshScore(Color color1,Color color2) {
+    public void refreshScore(int num1,int num2) {
         Piece p;
-        int BScore=0,WScore=0;
+        int Score1=0,Score2=0;
         for(int i=0;i<width;i++){
             for(int j=0;j<height;j++){
                 p = this.getCase(i, j).getPiece();
                 if(p!=null){
-                    if(p.getPieceColor()==color1){
-                        BScore++;
+                    if(p.getNumPlayer()==num1){
+                        Score1++;
                     }
-                    else if(p.getPieceColor()==color2){
-                        WScore++;
+                    else if(p.getNumPlayer()==num2){
+                        Score2++;
                     }
                 }
             }
         }
-        Score.refreshScore(BScore, WScore);
+        Score.refreshScore(Score1, Score2);
     }
     
 
