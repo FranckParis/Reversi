@@ -32,16 +32,11 @@ public class Game {
         this.board = board;
         NewGameMenu ng = new NewGameMenu(null, "New Game", true,this);
         ng.showMenu();
-        while(players.size()<1){
-            if(ng.isActive()){
-                try {
-                       Thread.sleep(1);
-                  } catch (InterruptedException exception) {
-                  }
-            }
-            else{
-                System.exit(1);
-            }
+        while(players.size()<=0){
+            try {
+                   Thread.sleep(1);
+              } catch (InterruptedException exception) {
+              }
         }
         window = new Window(this);
     }
@@ -57,10 +52,20 @@ public class Game {
             window.revalidate();
             window.repaint();
             player = players.get(playerIndex);
-            Turn turn = new Turn(player, this.board);
-            turn.run(board);
-            turns.add(turn);
-            playerIndex = playerIndex==0 ? playerIndex+1 : playerIndex-1;
+            if(this.turns.size() < 2 || (this.turns.get(this.turns.size()-1).getPlayedCase() != null && this.turns.get(this.turns.size()-2).getPlayedCase() != null)){
+                Turn turn = new Turn(player, this.board);
+                turn.run(board);
+                turns.add(turn);
+                playerIndex = playerIndex==0 ? playerIndex+1 : playerIndex-1;
+            }
+            else{
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                this.newGame = true;
+            }
             if(newGame){
                 this.playerIndex=0;
                 this.board.reset();
