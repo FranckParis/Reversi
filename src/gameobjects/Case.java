@@ -5,6 +5,8 @@
  */
 package gameobjects;
 
+import engine.Player;
+
 import java.awt.*;
 
 /**
@@ -24,9 +26,9 @@ public class Case{
         this(-1,-1);
     }
 
-    public void addPiece(Color color){
+    public void addPiece(Player player){
         if(this.piece == null){
-            this.piece = new Piece(color);
+            this.piece = new Piece(player);
         }
     }
 

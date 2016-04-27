@@ -22,7 +22,7 @@ public class Turn {
     public Turn (Player p, GameBoard board){
         this.player = p;
         this.playedCase = null;
-        this.tabPlayableCases = board.listOfPlayablePos(this.player.getPlayerColor());
+        this.tabPlayableCases = board.listOfPlayablePos(this.player.getPlayerNum());
     }
     
     public void run(GameBoard board){
@@ -40,8 +40,8 @@ public class Turn {
             }
         }while(!canPlay && !this.player.isStop());
         if(!this.player.isStop()){
-            board.addPieceOnPos(pos, this.player.getPlayerColor());
-            board.capturePieces(this.tabPlayableCases.get(i).getTabPieces(),player.getPlayerColor());
+            board.addPieceOnPos(pos, this.player);
+            board.capturePieces(this.tabPlayableCases.get(i).getTabPieces(),this.player);
             this.playedCase = board.getCase(pos);
         }
     }

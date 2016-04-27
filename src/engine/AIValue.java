@@ -22,7 +22,7 @@ public class AIValue extends AI{
     
     @Override
     public Position play(Turn turn, GameBoard board){
-        ArrayList<PlayableCase> tabPlayableCases = board.listOfPlayablePos(this.getPlayerColor());
+        ArrayList<PlayableCase> tabPlayableCases = board.listOfPlayablePos(this.getPlayerNum());
         int bestP = 0;
         int scoreP = 0;
         for(int i = 0;i<tabPlayableCases.size();i++){
