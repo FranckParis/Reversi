@@ -231,7 +231,7 @@ public class GameBoard {
 
     public boolean gameOver() {
         //To do
-        return false;
+        return true;
     }
 
     public void reset(){

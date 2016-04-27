@@ -18,67 +18,80 @@ import java.util.ArrayList;
  */
 public class AIAlphaBeta extends AI {
     
+    public AIAlphaBeta(int number){
+        super(number);
+    }
+    
+    
     @Override
     public Position play(Turn turn, GameBoard board){
-        /*
+       
         double alpha = Double.NEGATIVE_INFINITY;
         double beta = Double.POSITIVE_INFINITY;
-        double best = 0;
+        double best = Double.NEGATIVE_INFINITY;;
         PlayableCase bestCase = null;
         
         for (PlayableCase c : turn.getTabPlayableCases()){
-            double res = negamax(c, 5, alpha, beta, -1, board);
+            double res = negamax(c, 5, alpha, beta, turn.getPlayer(), board, false);
             if (res > best){
                 best = res;
                 bestCase = c;
             }
-        */
-        return null;
-        
+        }
+        return bestCase.getpCase().getPos();
     }
     
-    /*
-    public double negamax(PlayableCase selectedCase, int depth, double a, double b, int pNum, GameBoard board){
+    
+    public double negamax(PlayableCase selectedCase, int depth, double a, double b, Player p, GameBoard board, boolean prevPlayerCantPlay){
         
         //Stop
-        if (depth == 0 || board.gameOver()) {
-            evaluate(board);
+        if (depth == 0 || (board.listOfPlayablePos(p.getPlayerNum()).isEmpty() && prevPlayerCantPlay)){
+            evaluate(board, p);
         }
         
         //Init lists
-        ArrayList <PlayableCase> possibleCases = board.listOfPlayablePos(pNum); //Need une méthode qui renvoie tous les coups jouables sans Turn
+        ArrayList <PlayableCase> possibleCases = board.listOfPlayablePos(p.getPlayerNum()); 
         ArrayList <PlayableCase> optiCases = orderCases(possibleCases);
         double bestValue = Double.NEGATIVE_INFINITY;
         
         //Init Gameboard
-        GameBoard simulatedBoard = new GameBoard(); // A déplacer
+        GameBoard simulatedBoard = new GameBoard();
         simulatedBoard = board;
         
-        //Recursive
-        for (PlayableCase currentCase : optiCases){
-    
-            //Play move
-            simulatedBoard.addPieceOnPos(currentCase.getpCase().getPos(), pNum); //Problème couleur, nous faut un int !
-            
+        //No actions possible case
+        if(possibleCases.isEmpty()){
             int uDepth = depth - 1;
+            Human ennemy = new Human(-p.getPlayerNum());
+            double value = -negamax(selectedCase, uDepth, -b, -a, ennemy , simulatedBoard, true);
+        }
+        
+        else{
+            //Recursive
+            for (PlayableCase currentCase : optiCases){
 
-            double value = -negamax(currentCase, uDepth, -b, -a, -pNum, simulatedBoard);
-            
-            bestValue = max(bestValue, value);
-            a = max(a, value);
-            if (a >= b){
-                break;
+                //Play move
+                simulatedBoard.addPieceOnPos(currentCase.getpCase().getPos(), p);
+
+                int uDepth = depth - 1;
+
+                Human ennemy = new Human(-p.getPlayerNum());
+                double value = -negamax(currentCase, uDepth, -b, -a, ennemy , simulatedBoard, false);
+
+                bestValue = max(bestValue, value);
+                a = max(a, value);
+                if (a >= b){
+                    break;
+                } 
+                
+                //Remove move
+                simulatedBoard.removePieceOnPos(currentCase.getpCase().getPos());
             }
-            
-            //Remove move
-            simulatedBoard.removePieceOnPos(currentCase.getpCase().getPos(), pNum);//Problème couleur, nous faut un int !
         }
         return bestValue;
     }
     
-    
-    public int evaluate(GameBoard board){
-        return board.listOfPlayablePos(pNum).size() - board.listOfPlayablePos(-pNum).size();
+    public int evaluate(GameBoard board, Player p){
+        return board.listOfPlayablePos(p.getPlayerNum()).size() - board.listOfPlayablePos(- p.getPlayerNum()).size();
     }
    
 
@@ -108,6 +121,4 @@ public class AIAlphaBeta extends AI {
         }
         return optiCases;
     }
-
-*/
 }
