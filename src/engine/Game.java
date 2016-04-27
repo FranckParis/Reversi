@@ -8,7 +8,6 @@ package engine;
 import gameobjects.GameBoard;
 import graphics.NewGameMenu;
 import graphics.Window;
-import java.awt.Color;
 import java.util.ArrayList;
 
 /**
@@ -22,12 +21,12 @@ public class Game {
     private GameBoard board;
     private Window window;
     private int playerIndex;
-    private boolean reset;
+    private boolean newGame;
     
     public Game (){
         this.playerIndex=0;
         GameBoard board = new GameBoard();
-        this.reset=false;
+        this.newGame=false;
         this.turns = new ArrayList <>();
         this.players = new ArrayList <>();
         this.board = board;
@@ -57,7 +56,7 @@ public class Game {
             turn.run(board);
             turns.add(turn);
             playerIndex = playerIndex==0 ? playerIndex+1 : playerIndex-1;
-            if(reset){
+            if(newGame){
                 this.playerIndex=0;
                 this.board.reset();
                 this.turns.clear();
@@ -69,7 +68,7 @@ public class Game {
                 board.addPieceOnPos(4, 4, players.get(0).getPlayerColor());
                 window.revalidate();
                 window.repaint();
-                this.reset=false;
+                this.newGame=false;
             }
         }
     }
@@ -105,7 +104,7 @@ public class Game {
     public void reset(){
         this.players.get(1).stop();
         this.players.get(0).stop();
-        reset = true;
+        newGame = true;
     }
     
     public void newGame(Player p1, Player p2){
@@ -116,7 +115,7 @@ public class Game {
         this.players.clear();
         this.players.add(p1);
         this.players.add(p2);
-        reset = true;
+        newGame = true;
     }
     
 }

@@ -11,6 +11,7 @@ package graphics;
  */
 
 import engine.AIRandom;
+import engine.AIValue;
 import engine.Game;
 import engine.Human;
 import engine.Player;
@@ -68,6 +69,7 @@ public class NewGameMenu extends JDialog{
     type1 = new JComboBox();
     type1.addItem("Human");
     type1.addItem("Random AI");
+    type1.addItem("Value AI");
     panPlayer1.add(typeLabel1);
     panPlayer1.add(type1);
     color1 = new JComboBox();
@@ -88,6 +90,7 @@ public class NewGameMenu extends JDialog{
     type2 = new JComboBox();
     type2.addItem("Human");
     type2.addItem("Random AI");
+    type2.addItem("Value AI");
     panPlayer2.add(typeLabel2);
     panPlayer2.add(type2);
     color2 = new JComboBox();
@@ -117,6 +120,8 @@ public class NewGameMenu extends JDialog{
                 break;
             case 1:player1 = new AIRandom(1);
                 break;
+            case 2:player1 = new AIValue(1);
+                break;
             default:player1 = new Human(1);
                 break;
         }
@@ -137,11 +142,13 @@ public class NewGameMenu extends JDialog{
                 break;
         }
         switch(type2.getSelectedIndex()){
-            case 0:player2 = new Human(1);
+            case 0:player2 = new Human(-1);
                 break;
-            case 1:player2 = new AIRandom(1);
+            case 1:player2 = new AIRandom(-1);
                 break;
-            default:player2 = new Human(1);
+            case 2:player2 = new AIValue(-1);
+                break;
+            default:player2 = new Human(-1);
                 break;
         }
         switch(color2.getSelectedIndex()){
