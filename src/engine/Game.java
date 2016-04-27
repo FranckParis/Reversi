@@ -32,11 +32,16 @@ public class Game {
         this.board = board;
         NewGameMenu ng = new NewGameMenu(null, "New Game", true,this);
         ng.showMenu();
-        while(players.size()<=0){
-            try {
-                   Thread.sleep(1);
-              } catch (InterruptedException exception) {
-              }
+        while(players.size()<1){
+            if(ng.isActive()){
+                try {
+                       Thread.sleep(1);
+                  } catch (InterruptedException exception) {
+                  }
+            }
+            else{
+                System.exit(1);
+            }
         }
         window = new Window(this);
     }
