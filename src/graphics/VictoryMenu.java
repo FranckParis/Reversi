@@ -7,6 +7,7 @@ package graphics;
 
 import engine.Game;
 import engine.Player;
+import gameobjects.Score;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -44,7 +45,13 @@ public class VictoryMenu  extends JDialog{
     private void initComponent(){
         JPanel content = new JPanel();
         content.setBackground(Color.white);
-        JLabel typeLabel1 = new JLabel("player win (  to  )");
+        JLabel typeLabel1;
+        if(Score.getScore1()>Score.getScore2()){
+            typeLabel1 = new JLabel("player 1 win ("+Score.getScore1()+"  to "+Score.getScore2()+")");
+        }
+        else{
+            typeLabel1 = new JLabel("player 2 win ("+Score.getScore2()+"  to "+Score.getScore1()+")");
+        }
         content.add(typeLabel1);
         
         JButton cancelBouton = new JButton("Quit");
@@ -60,7 +67,8 @@ public class VictoryMenu  extends JDialog{
         newGameBouton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                game.reset();
+                NewGameMenu ng = new NewGameMenu(null,game);
+                ng.showMenu();
                 setVisible(false);
             }      
          });
@@ -69,8 +77,7 @@ public class VictoryMenu  extends JDialog{
         restartBouton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                NewGameMenu ng = new NewGameMenu(null,game);
-                ng.showMenu(); 
+                game.reset();
                 setVisible(false);
             }      
          });
