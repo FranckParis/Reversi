@@ -225,5 +225,10 @@ public class GameBoard {
         }
         Score.refreshScore(BScore, WScore);
     }
+    
+    public boolean gameOver() {
+        //To do
+        return false;
+    }
 
 }

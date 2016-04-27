@@ -14,7 +14,7 @@ import java.awt.Color;
  *
  * @author Francky
  */
-public class AI extends Player {
+public abstract class AI extends Player {
 
     public AI() {
         super(2, Color.WHITE);
