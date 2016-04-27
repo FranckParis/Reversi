@@ -26,6 +26,7 @@ public class Turn {
     }
     
     public void run(GameBoard board){
+        if(this.tabPlayableCases.size() == 0) return;
         int i;
         boolean canPlay = false;
         Position pos;

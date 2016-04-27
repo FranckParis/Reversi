@@ -57,10 +57,20 @@ public class Game {
             window.revalidate();
             window.repaint();
             player = players.get(playerIndex);
-            Turn turn = new Turn(player, this.board);
-            turn.run(board);
-            turns.add(turn);
-            playerIndex = playerIndex==0 ? playerIndex+1 : playerIndex-1;
+            if(this.turns.size() < 2 || (this.turns.get(this.turns.size()-1).getPlayedCase() != null && this.turns.get(this.turns.size()-2).getPlayedCase() != null)){
+                Turn turn = new Turn(player, this.board);
+                turn.run(board);
+                turns.add(turn);
+                playerIndex = playerIndex==0 ? playerIndex+1 : playerIndex-1;
+            }
+            else{
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                this.newGame = true;
+            }
             if(newGame){
                 this.playerIndex=0;
                 this.board.reset();
