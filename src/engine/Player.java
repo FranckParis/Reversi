@@ -18,6 +18,7 @@ public abstract class Player {
 
     private int playerNum;
     protected Color playerColor;
+    private boolean stop = false;
 
     public Player(int num, Color c) {
             this.playerNum = num;
@@ -30,6 +31,14 @@ public abstract class Player {
 
     public Color getPlayerColor() {
         return this.playerColor;
+    }
+    
+    public void stop(){
+        stop=true;
+    }
+
+    public boolean isStop() {
+        return stop;
     }
 
     public abstract Position play(Turn turn, GameBoard board);

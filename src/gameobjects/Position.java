@@ -38,6 +38,10 @@ public class Position {
         return (this.posX >= 0 && this.posX < board.getWidth() && this.posY >= 0 && this.posY < board.getHeight());
     }
     
+    public boolean equal(Position p){
+        return this.posX == p.getPosX() && this.posY == p.getPosY();
+    }
+    
     public void reset(){
         this.setPosX(-1);
         this.setPosY(-1);

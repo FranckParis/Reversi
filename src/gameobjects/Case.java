@@ -49,5 +49,9 @@ public class Case{
     public Position getPos() {
         return pos;
     }
+    
+    public void reset(){
+        this.piece = null;
+    }
 
 }

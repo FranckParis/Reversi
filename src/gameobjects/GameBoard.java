@@ -226,9 +226,18 @@ public class GameBoard {
         Score.refreshScore(BScore, WScore);
     }
     
+
     public boolean gameOver() {
         //To do
         return false;
+    }
+
+    public void reset(){
+        for(int i=0;i<width;i++){
+            for(int j=0;j<height;j++){
+                this.board[i][j].reset();
+            }
+        }
     }
 
 }

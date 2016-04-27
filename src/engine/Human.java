@@ -29,7 +29,7 @@ public class Human extends Player {
     @Override
     public Position play(Turn turn,GameBoard board){
         this.clickedPos.reset();
-        while (clickedPos.getPosX()<0 || clickedPos.getPosY()<0) {
+        while (!this.isStop() && (clickedPos.getPosX()<0 || clickedPos.getPosY()<0)) {
               try {
                    Thread.sleep(1);
               } catch (InterruptedException exception) {
@@ -37,8 +37,11 @@ public class Human extends Player {
          }
         return clickedPos;
     }
+    
+
 
     public static void setClickedPos(Position ClickedPos) {
-        Human.clickedPos = ClickedPos;
+        Human.clickedPos.setPosX(ClickedPos.getPosX());
+        Human.clickedPos.setPosY(ClickedPos.getPosY());
     }
 }

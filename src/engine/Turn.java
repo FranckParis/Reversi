@@ -33,15 +33,17 @@ public class Turn {
             i = 0;
             pos = this.player.play(this,board);
             while(i < this.tabPlayableCases.size() && !canPlay){
-                if(this.tabPlayableCases.get(i).getpCase().getPos() == pos){
+                if(this.tabPlayableCases.get(i).getpCase().getPos().equal(pos)){
                     canPlay = true;
                 }
                 else i++;
             }
-        }while(!canPlay);
-        board.addPieceOnPos(pos, this.player.getPlayerColor());
-        board.capturePieces(this.tabPlayableCases.get(i).getTabPieces());
-        this.playedCase = board.getCase(pos);
+        }while(!canPlay && !this.player.isStop());
+        if(!this.player.isStop()){
+            board.addPieceOnPos(pos, this.player.getPlayerColor());
+            board.capturePieces(this.tabPlayableCases.get(i).getTabPieces());
+            this.playedCase = board.getCase(pos);
+        }
     }
 
     public Player getPlayer(){

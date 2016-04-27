@@ -21,13 +21,14 @@ public class Game {
     private GameBoard board;
     private Window window;
     private int playerIndex;
+    private boolean reset;
     
     public Game (){
         this.playerIndex=0;
         Player player1 = new Human(Color.WHITE);
         Player player2 = new Human(Color.BLACK);
         GameBoard board = new GameBoard();
-        
+        this.reset=false;
         this.turns = new ArrayList <>();
         this.players = new ArrayList <>();
         this.board = board;
@@ -51,6 +52,18 @@ public class Game {
             turn.run(board);
             turns.add(turn);
             playerIndex = playerIndex==0 ? playerIndex+1 : playerIndex-1;
+            if(reset){
+                this.playerIndex=0;
+                this.board.reset();
+                this.reset=false;
+                this.turns = new ArrayList <>();
+                board.addPieceOnPos(3, 3, players.get(0).getPlayerColor());
+                board.addPieceOnPos(3, 4, players.get(1).getPlayerColor());
+                board.addPieceOnPos(4, 3, players.get(1).getPlayerColor());
+                board.addPieceOnPos(4, 4, players.get(0).getPlayerColor());
+                window.revalidate();
+                window.repaint();
+            }
         }
     }
     
@@ -82,5 +95,15 @@ public class Game {
         return this.players.get(playerIndex);
     }
     
+    public void reset(){
+        this.players.get(1).stop();
+        this.players.get(0).stop();
+        Player player1 = new Human(Color.WHITE);
+        Player player2 = new Human(Color.BLACK);
+        this.players.clear();
+        this.players.add(player1);
+        this.players.add(player2);
+        reset = true;
+    }
     
 }
