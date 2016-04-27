@@ -38,7 +38,7 @@ public class AIAlphaBeta extends AI {
     }
     
     /*
-    public double negamax(PlayableCase selectedCase, int depth, double a, double b, int playerNum, GameBoard board){
+    public double negamax(PlayableCase selectedCase, int depth, double a, double b, int pNum, GameBoard board){
         
         //Stop
         if (depth == 0 || board.gameOver()) {
@@ -46,33 +46,39 @@ public class AIAlphaBeta extends AI {
         }
         
         //Init lists
-        ArrayList <PlayableCase> possibleCases = selectedCase.getPlayableCases(); //Need une méthode qui renvoie tous les coups jouables sans Turn
+        ArrayList <PlayableCase> possibleCases = board.listOfPlayablePos(pNum); //Need une méthode qui renvoie tous les coups jouables sans Turn
         ArrayList <PlayableCase> optiCases = orderCases(possibleCases);
         double bestValue = Double.NEGATIVE_INFINITY;
         
         //Init Gameboard
-        GameBoard simulatedBoard = new GameBoard();
+        GameBoard simulatedBoard = new GameBoard(); // A déplacer
+        simulatedBoard = board;
         
         //Recursive
         for (PlayableCase currentCase : optiCases){
-            simulatedBoard.addPieceOnPos(currentCase.getpCase().getPos(), playerNum); //Problème couleur
+    
+            //Play move
+            simulatedBoard.addPieceOnPos(currentCase.getpCase().getPos(), pNum); //Problème couleur, nous faut un int !
             
             int uDepth = depth - 1;
 
-            double value = -negamax(currentCase, uDepth, -b, -a, -playerNum, simulatedBoard);
+            double value = -negamax(currentCase, uDepth, -b, -a, -pNum, simulatedBoard);
             
             bestValue = max(bestValue, value);
             a = max(a, value);
             if (a >= b){
                 break;
             }
+            
+            //Remove move
+            simulatedBoard.removePieceOnPos(currentCase.getpCase().getPos(), pNum);//Problème couleur, nous faut un int !
         }
         return bestValue;
     }
     
     
     public int evaluate(GameBoard board){
-        return board.getPlayableCases(1).size() - board.getPlayableCases(-1).size();
+        return board.listOfPlayablePos(pNum).size() - board.listOfPlayablePos(-pNum).size();
     }
    
 
@@ -103,6 +109,5 @@ public class AIAlphaBeta extends AI {
         return optiCases;
     }
 
-    */
-
+*/
 }
