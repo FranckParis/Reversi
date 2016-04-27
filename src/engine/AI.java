@@ -32,14 +32,4 @@ public abstract class AI extends Player {
     public Position play(Turn turn, GameBoard board){
         return new Position(0,0);
     }
-
-    public Color iToCol(int i){
-        if (i == 1) return Color.white;//AHHHHHHHHHHHHHHH! Colors are changeable 
-        else return Color.black;
-    }
-
-    public int colToI (Color col){
-        if(col == Color.white) return 1;
-        else return -1;
-    }
 }
