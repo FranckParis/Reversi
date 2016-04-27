@@ -1,30 +1,28 @@
 package gameobjects;
 
+import engine.Player;
+
 import java.awt.*;
 
 /**
  * Created by menros on 31/03/16.
  */
 public class Piece {
-    private Color color;
+    private Player player;
 
-    public Piece(){
-        this(Color.black);
-    }
 
-    public Piece(Color color){
-        this.color = color;
+    public Piece(Player player){
+        this.player = player;
     }
 
     public Color getPieceColor(){
-        return this.color;
+        return this.player.getPlayerColor();
+    }
+    public int getNumPlayer(){
+        return this.player.getPlayerNum();
     }
 
-    public void setPieceColor(Color color){
-        this.color = color;
-    }
-
-    public void switchColor(Color color){
-        this.setPieceColor(color);
+    public void capture (Player player){
+        this.player = player;
     }
 }

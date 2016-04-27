@@ -5,6 +5,8 @@
  */
 package gameobjects;
 
+import engine.Player;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -50,55 +52,55 @@ public class GameBoard {
             7- right
             8- bottom right diagonal
      */
-    public boolean addCapture(Position pos, Color color, int sens, ArrayList <Piece> tabP){
+    public boolean addCapture(Position pos, int playerNum, int sens, ArrayList <Piece> tabP){
         if(pos.isOnBoard(this) && this.getPieceOnPos(pos) != null){
-            if(this.getPieceOnPos(pos).getPieceColor() == color) return true;
+            if(this.getPieceOnPos(pos).getNumPlayer() == playerNum) return true;
             else{
                 switch(sens){
                     case 1:
-                        if(addCapture(new Position(pos.getPosX()-1, pos.getPosY()-1), color, sens, tabP)){
+                        if(addCapture(new Position(pos.getPosX()-1, pos.getPosY()-1), playerNum, sens, tabP)){
                             tabP.add(this.getPieceOnPos(pos));
                             return true;
                         }
                         break;
                     case 2:
-                        if(addCapture(new Position(pos.getPosX(), pos.getPosY()-1), color, sens, tabP)){
+                        if(addCapture(new Position(pos.getPosX(), pos.getPosY()-1), playerNum, sens, tabP)){
                             tabP.add(this.getPieceOnPos(pos));
                             return true;
                         }
                         break;
                     case 3:
-                        if(addCapture(new Position(pos.getPosX()+1, pos.getPosY()-1), color, sens, tabP)){
+                        if(addCapture(new Position(pos.getPosX()+1, pos.getPosY()-1), playerNum, sens, tabP)){
                             tabP.add(this.getPieceOnPos(pos));
                             return true;
                         }
                         break;
                     case 4:
-                        if(addCapture(new Position(pos.getPosX()-1, pos.getPosY()), color, sens, tabP)){
+                        if(addCapture(new Position(pos.getPosX()-1, pos.getPosY()), playerNum, sens, tabP)){
                             tabP.add(this.getPieceOnPos(pos));
                             return true;
                         }
                         break;
                     case 5:
-                        if(addCapture(new Position(pos.getPosX()+1, pos.getPosY()), color, sens, tabP)){
+                        if(addCapture(new Position(pos.getPosX()+1, pos.getPosY()), playerNum, sens, tabP)){
                             tabP.add(this.getPieceOnPos(pos));
                             return true;
                         }
                         break;
                     case 6:
-                        if(addCapture(new Position(pos.getPosX()-1, pos.getPosY()+1), color, sens, tabP)){
+                        if(addCapture(new Position(pos.getPosX()-1, pos.getPosY()+1), playerNum, sens, tabP)){
                             tabP.add(this.getPieceOnPos(pos));
                             return true;
                         }
                         break;
                     case 7:
-                        if(addCapture(new Position(pos.getPosX(), pos.getPosY()+1), color, sens, tabP)){
+                        if(addCapture(new Position(pos.getPosX(), pos.getPosY()+1), playerNum, sens, tabP)){
                             tabP.add(this.getPieceOnPos(pos));
                             return true;
                         }
                         break;
                     case 8:
-                        if(addCapture(new Position(pos.getPosX()+1, pos.getPosY()+1), color, sens, tabP)){
+                        if(addCapture(new Position(pos.getPosX()+1, pos.getPosY()+1), playerNum, sens, tabP)){
                             tabP.add(this.getPieceOnPos(pos));
                             return true;
                         }
@@ -109,61 +111,61 @@ public class GameBoard {
         return false;
     }
 
-    public ArrayList canAddPieceOnPos(Position pos, Color color){
+    public ArrayList canAddPieceOnPos(Position pos, int playerNum){
         Position p;
         ArrayList <Piece> tabP = new ArrayList <>();
 
         if(this.getPieceOnPos(pos) == null){
             p = new Position(pos.getPosX()-1, pos.getPosY()-1);
-            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
-                this.addCapture(p, color, 1, tabP);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getNumPlayer() != playerNum){
+                this.addCapture(p, playerNum, 1, tabP);
             }
 
             p = new Position(pos.getPosX(), pos.getPosY()-1);
-            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
-                this.addCapture(p, color, 2, tabP);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getNumPlayer() != playerNum){
+                this.addCapture(p, playerNum, 2, tabP);
             }
 
             p = new Position(pos.getPosX()+1, pos.getPosY()-1);
-            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
-                this.addCapture(p, color, 3, tabP);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getNumPlayer() != playerNum){
+                this.addCapture(p, playerNum, 3, tabP);
             }
 
             p = new Position(pos.getPosX()-1, pos.getPosY());
-            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
-                this.addCapture(p, color, 4, tabP);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getNumPlayer() != playerNum){
+                this.addCapture(p, playerNum, 4, tabP);
             }
 
             p = new Position(pos.getPosX()+1, pos.getPosY());
-            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
-                this.addCapture(p, color, 5, tabP);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getNumPlayer() != playerNum){
+                this.addCapture(p, playerNum, 5, tabP);
             }
 
             p = new Position(pos.getPosX()-1, pos.getPosY()+1);
-            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
-                this.addCapture(p, color, 6, tabP);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getNumPlayer() != playerNum){
+                this.addCapture(p, playerNum, 6, tabP);
             }
 
             p = new Position(pos.getPosX(), pos.getPosY()+1);
-            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
-                this.addCapture(p, color, 7, tabP);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getNumPlayer() != playerNum){
+                this.addCapture(p, playerNum, 7, tabP);
             }
 
             p = new Position(pos.getPosX()+1, pos.getPosY()+1);
-            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getPieceColor() != color){
-                this.addCapture(p, color, 8, tabP);
+            if(p.isOnBoard(this) && this.getPieceOnPos(p) != null && this.getPieceOnPos(p).getNumPlayer() != playerNum){
+                this.addCapture(p, playerNum, 8, tabP);
             }
         }
         return tabP;
     }
 
-    public ArrayList listOfPlayablePos(Color color){
+    public ArrayList listOfPlayablePos(int playerNum){
         ArrayList <PlayableCase> tabPc = new ArrayList<>();
         ArrayList <Piece> tabP;
 
         for(int i = 0 ; i < this.height ; i++){
             for(int j = 0 ; j< this.width ; j++){
-                tabP = this.canAddPieceOnPos(new Position(i, j), color);
+                tabP = this.canAddPieceOnPos(new Position(i, j), playerNum);
                 if(!tabP.isEmpty()){
                     tabPc.add(new PlayableCase(getCase(i, j), tabP));
                 }
@@ -172,18 +174,18 @@ public class GameBoard {
         return tabPc;
     }
 
-    public void addPieceOnPos(Position pos, Color color){
+    public void addPieceOnPos(Position pos, Player player){
         Case c = this.getCase(pos);
-        c.addPiece(color);
+        c.addPiece(player);
     }
     
-    public void addPieceOnPos(int x, int y, Color color){
-        addPieceOnPos(new Position(x,y),color);
+    public void addPieceOnPos(int x, int y, Player player){
+        addPieceOnPos(new Position(x,y), player);
     }
 
-    public void capturePieces(ArrayList <Piece> tabP, Color color){
+    public void capturePieces(ArrayList <Piece> tabP, Player player){
         for (int i = 0 ; i < tabP.size() ; i++){
-            tabP.get(i).switchColor(color);
+            tabP.get(i).capture(player);
         }
     }
     

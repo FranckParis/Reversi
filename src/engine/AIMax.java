@@ -22,7 +22,7 @@ public class AIMax extends AI{
     
     @Override
     public Position play(Turn turn, GameBoard board){
-        ArrayList<PlayableCase> tabPlayableCases = board.listOfPlayablePos(this.getPlayerColor());
+        ArrayList<PlayableCase> tabPlayableCases = board.listOfPlayablePos(this.getPlayerNum());
         int bestP = 0;
         int scoreP;
         int bestScore = 0;

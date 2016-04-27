@@ -48,10 +48,10 @@ public class Game {
     
     public void run(){
         Player player;
-        board.addPieceOnPos(3, 3, players.get(0).getPlayerColor());
-        board.addPieceOnPos(3, 4, players.get(1).getPlayerColor());
-        board.addPieceOnPos(4, 3, players.get(1).getPlayerColor());
-        board.addPieceOnPos(4, 4, players.get(0).getPlayerColor());
+        board.addPieceOnPos(3, 3, players.get(0));
+        board.addPieceOnPos(3, 4, players.get(1));
+        board.addPieceOnPos(4, 3, players.get(1));
+        board.addPieceOnPos(4, 4, players.get(0));
         while(true){
             board.refreshScore(players.get(0).getPlayerColor(),players.get(1).getPlayerColor());
             window.revalidate();
@@ -67,10 +67,10 @@ public class Game {
                 this.turns.clear();
                 players.get(0).unStop();
                 players.get(1).unStop();
-                board.addPieceOnPos(3, 3, players.get(0).getPlayerColor());
-                board.addPieceOnPos(3, 4, players.get(1).getPlayerColor());
-                board.addPieceOnPos(4, 3, players.get(1).getPlayerColor());
-                board.addPieceOnPos(4, 4, players.get(0).getPlayerColor());
+                board.addPieceOnPos(3, 3, players.get(0));
+                board.addPieceOnPos(3, 4, players.get(1));
+                board.addPieceOnPos(4, 3, players.get(1));
+                board.addPieceOnPos(4, 4, players.get(0));
                 window.revalidate();
                 window.repaint();
                 this.newGame=false;

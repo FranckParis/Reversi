@@ -54,7 +54,7 @@ public class CaseView extends JButton implements MouseListener{
         }
         int i = 0;
         boolean playable = false;
-        ArrayList<PlayableCase> tabPlayableCases = game.getBoard().listOfPlayablePos(game.getPlayer().getPlayerColor());
+        ArrayList<PlayableCase> tabPlayableCases = game.getBoard().listOfPlayablePos(game.getPlayer().getPlayerNum());
         while(i < tabPlayableCases.size() && !playable){
             if(tabPlayableCases.get(i).getpCase().getPos() == c.getPos()){
                 playable = true;

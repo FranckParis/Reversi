@@ -26,7 +26,7 @@ public class AIRandom extends AI{
             Thread.sleep(100);
        } catch (InterruptedException exception) {
        }
-        ArrayList<PlayableCase> tabPlayableCases = board.listOfPlayablePos(this.getPlayerColor());
+        ArrayList<PlayableCase> tabPlayableCases = board.listOfPlayablePos(this.getPlayerNum());
         int lower = 0;
         int higher = tabPlayableCases.size();
         int random = (int)(Math.random() * (higher-lower)) + lower;
