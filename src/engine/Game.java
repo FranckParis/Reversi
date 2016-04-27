@@ -7,6 +7,7 @@ package engine;
 
 import gameobjects.GameBoard;
 import graphics.NewGameMenu;
+import graphics.VictoryMenu;
 import graphics.Window;
 import java.util.ArrayList;
 
@@ -57,19 +58,21 @@ public class Game {
             window.revalidate();
             window.repaint();
             player = players.get(playerIndex);
-            if(this.turns.size() < 2 || (this.turns.get(this.turns.size()-1).getPlayedCase() != null && this.turns.get(this.turns.size()-2).getPlayedCase() != null)){
+            if(this.turns.size() < 2 || !(this.turns.get(this.turns.size()-1).getPlayedCase() == null && this.turns.get(this.turns.size()-2).getPlayedCase() == null)){
                 Turn turn = new Turn(player, this.board);
                 turn.run(board);
                 turns.add(turn);
                 playerIndex = playerIndex==0 ? playerIndex+1 : playerIndex-1;
             }
             else{
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                this.newGame = true;
+                VictoryMenu vm = new VictoryMenu(null,this);
+                vm.showMenu();
+                while(vm.isActive()){
+                    try {
+                           Thread.sleep(1);
+                      } catch (InterruptedException exception) {
+                      }
+                    }
             }
             if(newGame){
                 this.playerIndex=0;

@@ -27,7 +27,7 @@ public class VictoryMenu  extends JDialog{
     private ArrayList<Player> players = new ArrayList <>();
     private Game game;
     
-    public VictoryMenu(JFrame parent/*, Game game*/){
+    public VictoryMenu(JFrame parent, Game game){
         super(parent, "Victory", true);
         this.game = game;
         this.setSize(550, 100);
@@ -47,10 +47,11 @@ public class VictoryMenu  extends JDialog{
         JLabel typeLabel1 = new JLabel("player win (  to  )");
         content.add(typeLabel1);
         
-        JButton cancelBouton = new JButton("Cancel");
+        JButton cancelBouton = new JButton("Quit");
         cancelBouton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent arg0) {
+                System.exit(0);
                 setVisible(false);
             }      
          });
