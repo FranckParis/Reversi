@@ -10,11 +10,8 @@ package graphics;
  * @author theo
  */
 
-import engine.AIRandom;
-import engine.AIValue;
 import engine.Game;
-import engine.Human;
-import engine.Player;
+import engine.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -70,6 +67,8 @@ public class NewGameMenu extends JDialog{
     type1.addItem("Human");
     type1.addItem("Random AI");
     type1.addItem("Value AI");
+    type1.addItem("Min AI");
+    type1.addItem("Max AI");
     panPlayer1.add(typeLabel1);
     panPlayer1.add(type1);
     color1 = new JComboBox();
@@ -91,6 +90,8 @@ public class NewGameMenu extends JDialog{
     type2.addItem("Human");
     type2.addItem("Random AI");
     type2.addItem("Value AI");
+    type2.addItem("Min AI");
+    type2.addItem("Max AI");
     panPlayer2.add(typeLabel2);
     panPlayer2.add(type2);
     color2 = new JComboBox();
@@ -122,6 +123,10 @@ public class NewGameMenu extends JDialog{
                 break;
             case 2:player1 = new AIValue(1);
                 break;
+            case 3:player1 = new AIMin(1);
+                break;
+            case 4:player1 = new AIMax(1);
+                break;
             default:player1 = new Human(1);
                 break;
         }
@@ -147,6 +152,10 @@ public class NewGameMenu extends JDialog{
             case 1:player2 = new AIRandom(-1);
                 break;
             case 2:player2 = new AIValue(-1);
+                break;
+            case 3:player2 = new AIMin(1);
+                break;
+            case 4:player2 = new AIMax(1);
                 break;
             default:player2 = new Human(-1);
                 break;
