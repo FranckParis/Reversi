@@ -55,14 +55,16 @@ public class Game {
             if(reset){
                 this.playerIndex=0;
                 this.board.reset();
-                this.reset=false;
-                this.turns = new ArrayList <>();
+                this.turns.clear();
+                players.get(0).unStop();
+                players.get(1).unStop();
                 board.addPieceOnPos(3, 3, players.get(0).getPlayerColor());
                 board.addPieceOnPos(3, 4, players.get(1).getPlayerColor());
                 board.addPieceOnPos(4, 3, players.get(1).getPlayerColor());
                 board.addPieceOnPos(4, 4, players.get(0).getPlayerColor());
                 window.revalidate();
                 window.repaint();
+                this.reset=false;
             }
         }
     }
@@ -98,11 +100,20 @@ public class Game {
     public void reset(){
         this.players.get(1).stop();
         this.players.get(0).stop();
-        Player player1 = new Human(Color.WHITE);
+        /*Player player1 = new Human(Color.WHITE);
         Player player2 = new Human(Color.BLACK);
         this.players.clear();
         this.players.add(player1);
-        this.players.add(player2);
+        this.players.add(player2);*/
+        reset = true;
+    }
+    
+    public void newGame(Player p1, Player p2){
+        this.players.get(1).stop();
+        this.players.get(0).stop();
+        this.players.clear();
+        this.players.add(p1);
+        this.players.add(p2);
         reset = true;
     }
     

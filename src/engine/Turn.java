@@ -41,7 +41,7 @@ public class Turn {
         }while(!canPlay && !this.player.isStop());
         if(!this.player.isStop()){
             board.addPieceOnPos(pos, this.player.getPlayerColor());
-            board.capturePieces(this.tabPlayableCases.get(i).getTabPieces());
+            board.capturePieces(this.tabPlayableCases.get(i).getTabPieces(),player.getPlayerColor());
             this.playedCase = board.getCase(pos);
         }
     }

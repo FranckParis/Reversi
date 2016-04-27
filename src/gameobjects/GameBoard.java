@@ -181,9 +181,9 @@ public class GameBoard {
         addPieceOnPos(new Position(x,y),color);
     }
 
-    public void capturePieces(ArrayList <Piece> tabP){
+    public void capturePieces(ArrayList <Piece> tabP, Color color){
         for (int i = 0 ; i < tabP.size() ; i++){
-            tabP.get(i).switchColor();
+            tabP.get(i).switchColor(color);
         }
     }
     

@@ -11,6 +11,7 @@ package graphics;
  */
 
 import engine.Game;
+import engine.Player;
 import java.awt.Color;
 import javax.swing.*;
 import gameobjects.GameBoard;
@@ -18,6 +19,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Window extends JFrame{
     private JMenuBar menuBar = new JMenuBar();
@@ -51,9 +53,12 @@ public class Window extends JFrame{
         
         //menu
         JMenu menu = new JMenu("Game");
-        JMenuItem item1 = new JMenuItem("reset game");
+        JMenuItem item1 = new JMenuItem("restart game");
+        JMenuItem item2 = new JMenuItem("new game");
         item1.addActionListener(new MenuListener());
+        item2.addActionListener(new NewGameListener());
         menu.add(item1);
+        menu.add(item2);
         
         this.menuBar.add(menu);
         this.setJMenuBar(menuBar);
@@ -76,6 +81,14 @@ public class Window extends JFrame{
           if(option == JOptionPane.OK_OPTION){
             game.reset();
           }
+        }
+    }
+    
+    public class NewGameListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent arg0) {    	
+            NewGameMenu ng = new NewGameMenu(null, "New Game", true,game);
+            ng.showMenu();       
         }
     }
 }
