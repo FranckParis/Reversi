@@ -153,9 +153,9 @@ public class NewGameMenu extends JDialog{
                 break;
             case 2:player2 = new AIValue(-1);
                 break;
-            case 3:player2 = new AIMin(1);
+            case 3:player2 = new AIMin(-1);
                 break;
-            case 4:player2 = new AIMax(1);
+            case 4:player2 = new AIMax(-1);
                 break;
             default:player2 = new Human(-1);
                 break;
