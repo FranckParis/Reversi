@@ -54,7 +54,7 @@ public class Game {
         board.addPieceOnPos(4, 3, players.get(1));
         board.addPieceOnPos(4, 4, players.get(0));
         while(true){
-            board.refreshScore(players.get(0).getPlayerColor(),players.get(1).getPlayerColor());
+            board.refreshScore(players.get(0).getPlayerNum(),players.get(1).getPlayerNum());
             window.revalidate();
             window.repaint();
             player = players.get(playerIndex);
