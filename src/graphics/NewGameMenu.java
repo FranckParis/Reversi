@@ -29,13 +29,12 @@ import javax.swing.JPanel;
 
 public class NewGameMenu extends JDialog{
   private ArrayList<Player> players = new ArrayList <>();
-  private boolean sendData;
   private JLabel typeLabel1, colorLabel1,typeLabel2, colorLabel2;
   private JComboBox type1, type2, color1, color2;
   private Game game;
 
-  public NewGameMenu(JFrame parent, String title, boolean modal, Game game){
-    super(parent, title, modal);
+  public NewGameMenu(JFrame parent, Game game){
+    super(parent, "New Game", true);
     this.game = game;
     this.setSize(550, 200);
     this.setLocationRelativeTo(null);
@@ -45,7 +44,6 @@ public class NewGameMenu extends JDialog{
   }
 
   public void showMenu(){
-    this.sendData = false;
     this.setVisible(true);   
   }
 

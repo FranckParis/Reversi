@@ -30,7 +30,7 @@ public class Game {
         this.turns = new ArrayList <>();
         this.players = new ArrayList <>();
         this.board = board;
-        NewGameMenu ng = new NewGameMenu(null, "New Game", true,this);
+        NewGameMenu ng = new NewGameMenu(null,this);
         ng.showMenu();
         while(players.size()<1){
             if(ng.isActive()){
@@ -40,7 +40,7 @@ public class Game {
                   }
             }
             else{
-                System.exit(1);
+                System.exit(0);
             }
         }
         window = new Window(this);

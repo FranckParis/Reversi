@@ -87,7 +87,7 @@ public class Window extends JFrame{
     public class NewGameListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent arg0) {    	
-            NewGameMenu ng = new NewGameMenu(null, "New Game", true,game);
+            NewGameMenu ng = new NewGameMenu(null,game);
             ng.showMenu();       
         }
     }
