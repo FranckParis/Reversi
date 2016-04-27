@@ -10,6 +10,7 @@ package graphics;
  * @author theo
  */
 
+import engine.AIRandom;
 import engine.Game;
 import engine.Human;
 import engine.Player;
@@ -66,6 +67,7 @@ public class NewGameMenu extends JDialog{
     panPlayer1.setBorder(BorderFactory.createTitledBorder("Player 1"));
     type1 = new JComboBox();
     type1.addItem("Human");
+    type1.addItem("Random AI");
     panPlayer1.add(typeLabel1);
     panPlayer1.add(type1);
     color1 = new JComboBox();
@@ -85,6 +87,7 @@ public class NewGameMenu extends JDialog{
     panPlayer2.setBorder(BorderFactory.createTitledBorder("Player 2"));
     type2 = new JComboBox();
     type2.addItem("Human");
+    type2.addItem("Random AI");
     panPlayer2.add(typeLabel2);
     panPlayer2.add(type2);
     color2 = new JComboBox();
@@ -109,11 +112,13 @@ public class NewGameMenu extends JDialog{
       @Override
       public void actionPerformed(ActionEvent arg0) {
         Player player1,player2;
-        if(type1.getSelectedItem().equals("Human")){
-            player1 = new Human();
-        }
-        else{
-            player1 = new Human();
+        switch(type1.getSelectedIndex()){
+            case 0:player1 = new Human(1);
+                break;
+            case 1:player1 = new AIRandom(1);
+                break;
+            default:player1 = new Human(1);
+                break;
         }
         switch(color1.getSelectedIndex()){
             case 0:player1.setColor(Color.BLACK);
@@ -131,11 +136,13 @@ public class NewGameMenu extends JDialog{
             default:player1.setColor(Color.WHITE);
                 break;
         }
-        if(type2.getSelectedItem().equals("Human")){
-            player2 = new Human();
-        }
-        else{
-            player2 = new Human();
+        switch(type2.getSelectedIndex()){
+            case 0:player2 = new Human(1);
+                break;
+            case 1:player2 = new AIRandom(1);
+                break;
+            default:player2 = new Human(1);
+                break;
         }
         switch(color2.getSelectedIndex()){
             case 0:player2.setColor(Color.WHITE);

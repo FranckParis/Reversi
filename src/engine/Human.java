@@ -17,6 +17,14 @@ import java.awt.Color;
 public class Human extends Player {
     
     private static Position clickedPos = new Position(-1,-1);
+    
+    public Human(Color color,int number){
+        super(number,color);
+    }
+    
+    public Human(int number){
+        super(number,Color.BLACK);
+    }
 
     public Human() {
         this(Color.BLACK);

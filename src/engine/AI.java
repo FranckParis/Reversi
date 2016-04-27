@@ -19,6 +19,14 @@ public abstract class AI extends Player {
     public AI() {
         super(2, Color.white);
     }
+    
+    public AI(Color color,int number){
+        super(number,color);
+    }
+    
+    public AI(int number){
+        super(number,Color.WHITE);
+    }
 
     @Override
     public Position play(Turn turn, GameBoard board){
@@ -26,7 +34,7 @@ public abstract class AI extends Player {
     }
 
     public Color iToCol(int i){
-        if (i == 1) return Color.white;
+        if (i == 1) return Color.white;//AHHHHHHHHHHHHHHH! Colors are changeable 
         else return Color.black;
     }
 

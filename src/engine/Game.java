@@ -25,8 +25,8 @@ public class Game {
     
     public Game (){
         this.playerIndex=0;
-        Player player1 = new Human(Color.WHITE);
-        Player player2 = new Human(Color.BLACK);
+        Player player1 = new Human(Color.WHITE,1);
+        Player player2 = new Human(Color.BLACK,2);
         GameBoard board = new GameBoard();
         this.reset=false;
         this.turns = new ArrayList <>();
@@ -100,11 +100,6 @@ public class Game {
     public void reset(){
         this.players.get(1).stop();
         this.players.get(0).stop();
-        /*Player player1 = new Human(Color.WHITE);
-        Player player2 = new Human(Color.BLACK);
-        this.players.clear();
-        this.players.add(player1);
-        this.players.add(player2);*/
         reset = true;
     }
     
