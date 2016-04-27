@@ -17,11 +17,21 @@ import java.awt.Color;
 public abstract class AI extends Player {
 
     public AI() {
-        super(2, Color.WHITE);
+        super(2, Color.white);
     }
 
     @Override
     public Position play(Turn turn, GameBoard board){
         return new Position(0,0);
+    }
+
+    public Color iToCol(int i){
+        if (i == 1) return Color.white;
+        else return Color.black;
+    }
+
+    public int colToI (Color col){
+        if(col == Color.white) return 1;
+        else return -1;
     }
 }
