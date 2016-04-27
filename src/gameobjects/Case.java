@@ -56,8 +56,9 @@ public class Case{
         this.piece = null;
     }
 
-    void removePiece(Color color) {
+    public void removePiece() {
         this.piece = null;
+        this.pos = null;
     }
 
 }

@@ -242,9 +242,9 @@ public class GameBoard {
         }
     }
 
-    public void removePieceOnPos(Position pos, Color color) {
+    public void removePieceOnPos(Position pos) {
         Case c = this.getCase(pos);
-        c.removePiece(color);    
+        c.removePiece();
     }
 
 }
