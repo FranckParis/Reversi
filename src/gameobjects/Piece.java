@@ -24,10 +24,7 @@ public class Piece {
         this.color = color;
     }
 
-    public void switchColor(){
-        if(this.color == Color.black)
-            this.setPieceColor(Color.white);
-        else
-            this.setPieceColor(Color.black);
+    public void switchColor(Color color){
+        this.setPieceColor(color);
     }
 }

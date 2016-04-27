@@ -62,8 +62,8 @@ public class CaseView extends JButton implements MouseListener{
             else i++;
         }
         if(playable){
-            g2d.setPaint(Color.red);
-            g.fillOval(size*1/20, size*1/20, size*9/10, size*9/10);
+            g2d.setPaint(game.getPlayer().getPlayerColor());
+            g.fillOval(size*7/20, size*7/20, size*3/10, size*3/10);
         }
     }
 

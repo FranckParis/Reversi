@@ -36,10 +36,20 @@ public abstract class Player {
     public void stop(){
         stop=true;
     }
+    
+    public void unStop(){
+        stop=false;
+    }
 
     public boolean isStop() {
         return stop;
     }
+
+    public void setColor(Color playerColor) {
+        this.playerColor = playerColor;
+    }
+    
+    
 
     public abstract Position play(Turn turn, GameBoard board);
 }
