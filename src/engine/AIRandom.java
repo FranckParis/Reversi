@@ -23,7 +23,7 @@ public class AIRandom extends AI{
     @Override
     public Position play(Turn turn, GameBoard board){
         try {
-            Thread.sleep(1000);
+            Thread.sleep(100);
        } catch (InterruptedException exception) {
        }
         ArrayList<PlayableCase> tabPlayableCases = board.listOfPlayablePos(this.getPlayerColor());

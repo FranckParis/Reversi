@@ -6,6 +6,7 @@
 package engine;
 
 import gameobjects.GameBoard;
+import graphics.NewGameMenu;
 import graphics.Window;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -25,15 +26,19 @@ public class Game {
     
     public Game (){
         this.playerIndex=0;
-        Player player1 = new Human(Color.WHITE,1);
-        Player player2 = new Human(Color.BLACK,2);
         GameBoard board = new GameBoard();
         this.reset=false;
         this.turns = new ArrayList <>();
         this.players = new ArrayList <>();
         this.board = board;
-        this.players.add(player1);
-        this.players.add(player2);
+        NewGameMenu ng = new NewGameMenu(null, "New Game", true,this);
+        ng.showMenu();
+        while(players.size()<=0){
+            try {
+                   Thread.sleep(1);
+              } catch (InterruptedException exception) {
+              }
+        }
         window = new Window(this);
     }
     
@@ -104,8 +109,10 @@ public class Game {
     }
     
     public void newGame(Player p1, Player p2){
-        this.players.get(1).stop();
-        this.players.get(0).stop();
+        if(players.size()==2){
+            this.players.get(1).stop();
+            this.players.get(0).stop();
+        }
         this.players.clear();
         this.players.add(p1);
         this.players.add(p2);
