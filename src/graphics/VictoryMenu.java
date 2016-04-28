@@ -14,7 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -50,7 +49,12 @@ public class VictoryMenu  extends JDialog{
             typeLabel1 = new JLabel("player 1 win ("+Score.getScore1()+"  to "+Score.getScore2()+")");
         }
         else{
-            typeLabel1 = new JLabel("player 2 win ("+Score.getScore2()+"  to "+Score.getScore1()+")");
+            if(Score.getScore1()<Score.getScore2()){
+                typeLabel1 = new JLabel("player 2 win ("+Score.getScore2()+"  to "+Score.getScore1()+")");
+            }
+            else{
+                typeLabel1 = new JLabel("draw game ("+Score.getScore1()+"  - "+Score.getScore2()+")");
+            }
         }
         content.add(typeLabel1);
         
