@@ -32,4 +32,11 @@ public abstract class AI extends Player {
     public Position play(Turn turn, GameBoard board){
         return new Position(0,0);
     }
+    
+    public boolean pileOuFace(){
+        int lower = 0;
+        int higher = 100;
+        int random = (int)(Math.random() * (higher-lower)) + lower;
+        return (random<50);
+    }
 }
