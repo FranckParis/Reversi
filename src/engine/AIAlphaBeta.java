@@ -55,6 +55,8 @@ public class AIAlphaBeta extends AI {
             return evaluate(board, p);
         }
 
+        System.out.println(possibleCases);
+        
         //No actions possible case
         if(possibleCases.isEmpty()){
             int uDepth = depth - 1;
