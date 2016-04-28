@@ -67,7 +67,9 @@ public class AIAlphaBeta extends AI {
             simulatedBoard.setWidth(board.getWidth());
             for(int x = 0 ; x < simulatedBoard.getHeight() ; x++){
                 for(int y = 0 ; y < simulatedBoard.getWidth() ; y++){
-                    simulatedBoard.setCase(x, y, new Case(x, y, new Piece(board.getCase(x, y).getPiece().getPlayer())));
+                    if(!board.getCase(x, y).isEmpty()){
+                        simulatedBoard.setCase(x, y, new Case(x, y, new Piece(board.getCase(x, y).getPiece().getPlayer())));
+                    }
                 }
             }
 
