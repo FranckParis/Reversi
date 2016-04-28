@@ -160,6 +160,7 @@ public class NewGameMenu extends JDialog{
             case 4:player2 = new AIMax(-1);
                 break;
             case 5:player2 = new AIAlphaBeta(-1);
+                break;
             default:player2 = new Human(-1);
                 break;
         }
