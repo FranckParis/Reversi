@@ -28,7 +28,7 @@ public class AIMax extends AI{
         int bestScore = 0;
         for(int i = 0;i<tabPlayableCases.size();i++){
             scoreP = tabPlayableCases.get(i).getTabPieces().size();
-            if(scoreP>bestScore){
+            if(scoreP>bestScore  || (scoreP==bestScore && pileOuFace())){
                 bestP = i;
                 bestScore = scoreP;
             }
