@@ -31,6 +31,7 @@ public class AIAlphaBeta extends AI {
         
         for (PlayableCase c : turn.getTabPlayableCases()){
             double res = negamax(c, 5, alpha, beta, turn.getPlayer(), board, false);
+            System.out.println(res);
             if (res > best){
                 best = res;
                 bestCase = c;
@@ -48,13 +49,14 @@ public class AIAlphaBeta extends AI {
         //Init lists
         ArrayList <PlayableCase> possibleCases = board.listOfPlayablePos(p.getPlayerNum());
         ArrayList <PlayableCase> optiCases;
+        
         double bestValue = Double.NEGATIVE_INFINITY;
 
         //Stop
         if (depth == 0 || (possibleCases.isEmpty() && prevPlayerCantPlay)){
             return evaluate(board, p);
         }
-
+        
         //No actions possible case
         if(possibleCases.isEmpty()){
             int uDepth = depth - 1;

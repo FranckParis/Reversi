@@ -171,7 +171,7 @@ public class GameBoard {
         return tabP;
     }
 
-    public ArrayList listOfPlayablePos(int playerNum){
+    public ArrayList<PlayableCase> listOfPlayablePos(int playerNum){
         ArrayList <PlayableCase> tabPc = new ArrayList<>();
         ArrayList <Piece> tabP;
 
