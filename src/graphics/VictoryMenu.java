@@ -34,7 +34,7 @@ public class VictoryMenu  extends JDialog{
         this.setSize(550, 100);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         this.initComponent();
     }
     
