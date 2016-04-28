@@ -42,6 +42,9 @@ public class Case{
     }
 
     public int getCordX(){
+        if(this.pos == null){
+            return 5;
+        }
         return this.pos.getPosX();
     }
 
@@ -63,7 +66,6 @@ public class Case{
 
     public void removePiece() {
         this.piece = null;
-        this.pos = null;
     }
 
 }
