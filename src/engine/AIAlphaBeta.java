@@ -5,10 +5,8 @@
  */
 package engine;
 
-import gameobjects.Case;
-import gameobjects.GameBoard;
-import gameobjects.PlayableCase;
-import gameobjects.Position;
+import gameobjects.*;
+
 import static java.lang.Math.max;
 import java.util.ArrayList;
 
@@ -43,21 +41,20 @@ public class AIAlphaBeta extends AI {
     
     
     public double negamax(PlayableCase selectedCase, int depth, double a, double b, Player p, GameBoard board, boolean prevPlayerCantPlay){
-        
-        //Stop
-        if (depth == 0 || (board.listOfPlayablePos(p.getPlayerNum()).isEmpty() && prevPlayerCantPlay)){
-            evaluate(board, p);
-        }
-        
-        //Init lists
-        ArrayList <PlayableCase> possibleCases = board.listOfPlayablePos(p.getPlayerNum()); 
-        ArrayList <PlayableCase> optiCases = orderCases(possibleCases);
-        double bestValue = Double.NEGATIVE_INFINITY;
-        
+
         //Init Gameboard
         GameBoard simulatedBoard = new GameBoard();
-        simulatedBoard = board;
-        
+
+        //Init lists
+        ArrayList <PlayableCase> possibleCases = board.listOfPlayablePos(p.getPlayerNum());
+        ArrayList <PlayableCase> optiCases;
+        double bestValue = Double.NEGATIVE_INFINITY;
+
+        //Stop
+        if (depth == 0 || (possibleCases.isEmpty() && prevPlayerCantPlay)){
+            return evaluate(board, p);
+        }
+
         //No actions possible case
         if(possibleCases.isEmpty()){
             int uDepth = depth - 1;
@@ -66,6 +63,16 @@ public class AIAlphaBeta extends AI {
         }
         
         else{
+            simulatedBoard.setHeight(board.getHeight());
+            simulatedBoard.setWidth(board.getWidth());
+            for(int x = 0 ; x < simulatedBoard.getHeight() ; x++){
+                for(int y = 0 ; y < simulatedBoard.getWidth() ; y++){
+                    simulatedBoard.setCase(x, y, new Case(x, y, new Piece(board.getCase(x, y).getPiece().getPlayer())));
+                }
+            }
+
+            optiCases = orderCases(possibleCases);
+
             //Recursive
             for (PlayableCase currentCase : optiCases){
 
@@ -74,8 +81,8 @@ public class AIAlphaBeta extends AI {
 
                 int uDepth = depth - 1;
 
-                Human ennemy = new Human(-p.getPlayerNum());
-                double value = -negamax(currentCase, uDepth, -b, -a, ennemy , simulatedBoard, false);
+                Human enemy = new Human(-p.getPlayerNum());
+                double value = -negamax(currentCase, uDepth, -b, -a, enemy , simulatedBoard, false);
 
                 bestValue = max(bestValue, value);
                 a = max(a, value);

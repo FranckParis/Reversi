@@ -42,6 +42,18 @@ public class GameBoard {
         return this.getPieceOnPos(pos).getPieceColor();
     }
 
+    public void setWidth(int width){
+        this.width = width;
+    }
+
+    public void setHeight(int height){
+        this.height = height;
+    }
+
+    public void setCase(int x, int y, Case c){
+        this.board[x][y] = c;
+    }
+
     /*
     sens :  1- top left diagonal
             2- left

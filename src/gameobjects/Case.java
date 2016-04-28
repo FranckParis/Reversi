@@ -17,6 +17,11 @@ public class Case{
     private Position pos;
     private Piece piece;
 
+    public Case (int x, int y, Piece piece){
+        this.piece = piece;
+        this.pos = new Position(x,y);
+    }
+
     public Case(int x, int y){
         this.piece = null;
         this.pos = new Position(x,y);

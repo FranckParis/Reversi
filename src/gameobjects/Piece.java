@@ -15,6 +15,10 @@ public class Piece {
         this.player = player;
     }
 
+    public Player getPlayer(){
+        return this.player;
+    }
+
     public Color getPieceColor(){
         return this.player.getPlayerColor();
     }
