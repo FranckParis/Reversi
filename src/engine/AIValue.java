@@ -47,7 +47,6 @@ public class AIValue extends AI{
                 bestP = i;
             }
         }
-        System.out.println(bestScore);
         return tabPlayableCases.get(bestP).getpCase().getPos();
     }
     
