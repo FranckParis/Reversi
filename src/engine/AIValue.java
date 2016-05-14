@@ -16,50 +16,38 @@ import java.util.ArrayList;
  */
 public class AIValue extends AI{
     
+    private int[][] values;
+    
     public AIValue(int number){
         super(number);
+        int[][] matrice = {
+            {2000, 0  ,1000,1000,1000,1000, 0  ,2000},
+            { 0  , 0  , 10 , 10 , 10 , 10 , 0  , 0  },
+            {1000, 10 ,500 ,500 ,500 ,500 , 10 ,1000},
+            {1000, 10 ,500 ,100 ,100 ,500 , 10 ,1000},
+            {1000, 10 ,500 ,100 ,100 ,500 , 10 ,1000},
+            {1000, 10 ,500 ,500 ,500 ,500 , 10 ,1000},
+            { 0  , 0  , 10 , 10 , 10 , 10 , 0  , 0  },
+            {2000, 0  ,1000,1000,1000,1000, 0  ,2000}
+        };
+        this.values = matrice;
     }
     
     @Override
     public Position play(Turn turn, GameBoard board){
         ArrayList<PlayableCase> tabPlayableCases = board.listOfPlayablePos(this.getPlayerNum());
         int bestP = 0;
+        int bestScore = -1;
         int scoreP = 0;
         for(int i = 0;i<tabPlayableCases.size();i++){
             Position p = tabPlayableCases.get(i).getpCase().getPos();
-            int x = p.getPosX();
-            int y = p.getPosY();
-            if((x==0 && y==0) || (x==7 && y==0) || (x==0 && y==7) || (x==7 && y==7))
-                return p;
-            if((x==1 && (y<2||y>5)) || (x==6 && (y<2||y>5)) || (x==0 && (y==1||y==6)) || (x==7 && (y==1||y==6))){
-                if(scoreP<0 || (scoreP==0 && pileOuFace())){
-                    bestP=i;
-                    scoreP=0;
-                }
-            }
-            else{
-                if((x==0||x==7||y==0||y==7)){
-                    if((scoreP<2000 || (scoreP==2000 && pileOuFace()))){
-                        bestP=i;
-                        scoreP=2000;
-                    }
-                }
-                else{
-                    if((((x==3||x==4) && (y>1 && y<6)) || ((x==2||x==5) && (y==3 || y==4)))){
-                        if((scoreP<1000) || (scoreP==1000 && pileOuFace())){
-                            bestP=i;
-                            scoreP=1000;
-                        }
-                    }
-                    else{
-                        if(scoreP<500 || (scoreP==500 && pileOuFace())){
-                            bestP=i;
-                            scoreP=500;
-                        }
-                    }
-                }
+            scoreP = this.values[p.getPosX()][p.getPosY()];
+            if(scoreP > bestScore ||(scoreP==bestScore && pileOuFace())){
+                bestScore = scoreP;
+                bestP = i;
             }
         }
+        System.out.println(bestScore);
         return tabPlayableCases.get(bestP).getpCase().getPos();
     }
     
