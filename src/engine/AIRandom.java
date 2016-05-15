@@ -22,10 +22,6 @@ public class AIRandom extends AI{
     
     @Override
     public Position play(Turn turn, GameBoard board){
-        try {
-            Thread.sleep(100);
-       } catch (InterruptedException exception) {
-       }
         ArrayList<PlayableCase> tabPlayableCases = board.listOfPlayablePos(this.getPlayerNum());
         int lower = 0;
         int higher = tabPlayableCases.size();
