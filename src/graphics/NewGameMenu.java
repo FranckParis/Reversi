@@ -67,6 +67,7 @@ public class NewGameMenu extends JDialog{
     type1.addItem("Value AI");
     type1.addItem("Min AI");
     type1.addItem("Max AI");
+    type1.addItem("MinThenMax AI");
     type1.addItem("AlphaBeta AI");
     panPlayer1.add(typeLabel1);
     panPlayer1.add(type1);
@@ -91,6 +92,7 @@ public class NewGameMenu extends JDialog{
     type2.addItem("Value AI");
     type2.addItem("Min AI");
     type2.addItem("Max AI");
+    type2.addItem("MinThenMax AI");
     type2.addItem("AlphaBeta AI");
     panPlayer2.add(typeLabel2);
     panPlayer2.add(type2);
@@ -127,7 +129,9 @@ public class NewGameMenu extends JDialog{
                 break;
             case 4:player1 = new AIMax(1);
                 break;
-            case 5:player1 = new AIAlphaBeta(1);
+            case 5:player1 = new AIMinThenMax(1);
+                break;
+            case 6:player1 = new AIAlphaBeta(1);
                 break;
             default:player1 = new Human(1);
                 break;
@@ -159,7 +163,9 @@ public class NewGameMenu extends JDialog{
                 break;
             case 4:player2 = new AIMax(-1);
                 break;
-            case 5:player2 = new AIAlphaBeta(-1);
+            case 5:player2 = new AIMinThenMax(-1);
+                break;
+            case 6:player2 = new AIAlphaBeta(-1);
                 break;
             default:player2 = new Human(-1);
                 break;

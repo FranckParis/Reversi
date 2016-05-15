@@ -28,7 +28,7 @@ public class VictoryMenu  extends JDialog{
     private Game game;
     
     public VictoryMenu(JFrame parent, Game game){
-        super(parent, "Victory", true);
+        super(parent, "Game over", true);
         this.game = game;
         this.setSize(550, 100);
         this.setLocationRelativeTo(null);
