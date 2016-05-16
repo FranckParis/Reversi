@@ -26,7 +26,7 @@ public class AIAlphaBeta extends AI {
        
         double alpha = Double.NEGATIVE_INFINITY;
         double beta = Double.POSITIVE_INFINITY;
-        double best = Double.NEGATIVE_INFINITY;;
+        double best = Double.NEGATIVE_INFINITY;
         PlayableCase bestCase = null;
         
         for (PlayableCase c : turn.getTabPlayableCases()){
@@ -117,15 +117,35 @@ public class AIAlphaBeta extends AI {
             
             //Grid edges
             if(possibleCases.get(i).getpCase().getCordX() == possibleCases.get(i).getpCase().getCordY() && 
-                    (possibleCases.get(i).getpCase().getCordX() == 0 || possibleCases.get(i).getpCase().getCordX() == 7)){
+                    (possibleCases.get(i).getpCase().getCordX() == 0 || possibleCases.get(i).getpCase().getCordY() == 7)){
                 optiCases.add(0, possibleCases.get(i));
             }
             
-            if(possibleCases.get(i).getpCase().getCordX() == 0 && possibleCases.get(i).getpCase().getCordX() == 7){
+            if(possibleCases.get(i).getpCase().getCordX() == 0 && possibleCases.get(i).getpCase().getCordY() == 7){
                 optiCases.add(0, possibleCases.get(i));
             }
             
-            if(possibleCases.get(i).getpCase().getCordX() == 7 && possibleCases.get(i).getpCase().getCordX() == 0){
+            if(possibleCases.get(i).getpCase().getCordX() == 7 && possibleCases.get(i).getpCase().getCordY() == 0){
+                optiCases.add(0, possibleCases.get(i));
+            }
+
+            //X Squares B
+
+            if(possibleCases.get(i).getpCase().getCordX() == 1 && possibleCases.get(i).getpCase().getCordY() == 1){
+                optiCases.add(0, possibleCases.get(i));
+            }
+
+            if(possibleCases.get(i).getpCase().getCordX() == 6 && possibleCases.get(i).getpCase().getCordY() == 1){
+                optiCases.add(0, possibleCases.get(i));
+            }
+
+            //X Squares G
+
+            if(possibleCases.get(i).getpCase().getCordX() == 1 && possibleCases.get(i).getpCase().getCordY() == 6){
+                optiCases.add(0, possibleCases.get(i));
+            }
+
+            if(possibleCases.get(i).getpCase().getCordX() == 6 && possibleCases.get(i).getpCase().getCordY() == 6){
                 optiCases.add(0, possibleCases.get(i));
             }
             
