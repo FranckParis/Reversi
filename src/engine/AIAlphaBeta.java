@@ -31,7 +31,7 @@ public class AIAlphaBeta extends AI {
         
         for (PlayableCase c : turn.getTabPlayableCases()){
             double res = negamax(c, 5, alpha, beta, turn.getPlayer(), board, false);
-            if (res > best){
+            if (res >= best){
                 best = res;
                 bestCase = c;
             }
