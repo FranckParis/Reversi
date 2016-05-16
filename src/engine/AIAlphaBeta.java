@@ -147,7 +147,40 @@ public class AIAlphaBeta extends AI {
             if(possibleCases.get(i).getpCase().getCordX() == 6 && possibleCases.get(i).getpCase().getCordY() == 6){
                 optiCases.add(0, possibleCases.get(i));
             }
-            
+
+            //Square entries
+            if(possibleCases.get(i).getpCase().getCordX() == 1 && possibleCases.get(i).getpCase().getCordY() == 0){
+                optiCases.add(0, possibleCases.get(i));
+            }
+
+            if(possibleCases.get(i).getpCase().getCordX() == 6 && possibleCases.get(i).getpCase().getCordY() == 0){
+                optiCases.add(0, possibleCases.get(i));
+            }
+
+            if(possibleCases.get(i).getpCase().getCordX() == 0 && possibleCases.get(i).getpCase().getCordY() == 1){
+                optiCases.add(0, possibleCases.get(i));
+            }
+
+            if(possibleCases.get(i).getpCase().getCordX() == 0 && possibleCases.get(i).getpCase().getCordY() == 5){
+                optiCases.add(0, possibleCases.get(i));
+            }
+
+            if(possibleCases.get(i).getpCase().getCordX() == 1 && possibleCases.get(i).getpCase().getCordY() == 7){
+                optiCases.add(0, possibleCases.get(i));
+            }
+
+            if(possibleCases.get(i).getpCase().getCordX() == 6 && possibleCases.get(i).getpCase().getCordY() == 7){
+                optiCases.add(0, possibleCases.get(i));
+            }
+
+            if(possibleCases.get(i).getpCase().getCordX() == 7 && possibleCases.get(i).getpCase().getCordY() == 1){
+                optiCases.add(0, possibleCases.get(i));
+            }
+
+            if(possibleCases.get(i).getpCase().getCordX() == 7 && possibleCases.get(i).getpCase().getCordY() == 7){
+                optiCases.add(0, possibleCases.get(i));
+            }
+
             else{
                 optiCases.add(possibleCases.get(i));
             }
