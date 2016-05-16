@@ -48,7 +48,6 @@ public class Game {
     }
     
     public void run(){
-        System.out.println(newGame);
         Player player;
         board.addPieceOnPos(3, 3, players.get(0));
         board.addPieceOnPos(3, 4, players.get(1));
