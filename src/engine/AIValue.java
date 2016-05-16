@@ -36,6 +36,7 @@ public class AIValue extends AI{
     @Override
     public Position play(Turn turn, GameBoard board){
         ArrayList<PlayableCase> tabPlayableCases = board.listOfPlayablePos(this.getPlayerNum());
+        int x,y;
         int bestP = 0;
         int bestScore = -1;
         int scoreP = 0;
@@ -46,6 +47,28 @@ public class AIValue extends AI{
                 bestScore = scoreP;
                 bestP = i;
             }
+        }
+        x=tabPlayableCases.get(bestP).getpCase().getPos().getPosX();
+        y=tabPlayableCases.get(bestP).getpCase().getPos().getPosY();
+        if(x==0 && y==0){
+            this.values[0][1]=1500;
+            this.values[1][1]=1000;
+            this.values[1][0]=1500;
+        }
+        if(x==0 && y==7){
+            this.values[0][6]=1500;
+            this.values[1][6]=1000;
+            this.values[1][7]=1500;
+        }
+        if(x==7 && y==0){
+            this.values[6][0]=1500;
+            this.values[6][1]=1000;
+            this.values[7][1]=1500;
+        }
+        if(x==7 && y==7){
+            this.values[6][6]=1000;
+            this.values[6][7]=1500;
+            this.values[7][6]=1500;
         }
         return tabPlayableCases.get(bestP).getpCase().getPos();
     }
