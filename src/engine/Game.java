@@ -27,7 +27,6 @@ public class Game {
     public Game (){
         this.playerIndex=0;
         GameBoard board = new GameBoard();
-        this.newGame=false;
         this.turns = new ArrayList <>();
         this.players = new ArrayList <>();
         this.board = board;
@@ -44,6 +43,7 @@ public class Game {
                 System.exit(0);
             }
         }
+        this.newGame=false;
         window = new Window(this);
     }
     
